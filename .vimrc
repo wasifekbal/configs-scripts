@@ -2,10 +2,15 @@ call plug#begin()
 
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
 let mapleader = " "
+let g:UltiSnipsExpandTrigger="<tab>"
+" list all snippets for current filetype
+let g:UltiSnipsListSnippets="<c-l>"
 
 let NERDTreeShowHidden=1
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -30,9 +35,9 @@ vnoremap <leader>p "+p
 nnoremap <leader>p "+p
 
 set number
-set tabstop=2
+set tabstop=4
 set expandtab
-set shiftwidth=2
+set shiftwidth=4
 set autoindent
 set smartindent
 set cursorline
@@ -72,10 +77,6 @@ augroup AutoDeleteNetrwHiddenBuffers
   au FileType netrw setlocal bufhidden=wipe
 augroup end
 
-" Mappings ---------------------------------------------------
-"map <silent> <C-E> :call ToggleNetrw()<CR>
-map <leader>c :call ConvertDosToUnix()<CR>
-
 let g:netrw_banner = 0
 let g:netrw_keepdir = 0
 let g:netrw_winsize = 23
@@ -83,6 +84,10 @@ let g:netrw_liststyle=3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_preview = 1
+
+" Mappings ---------------------------------------------------
+"map <silent> <C-E> :call ToggleNetrw()<CR>
+map <leader>c :call ConvertDosToUnix()<CR>
 
 "augroup ProjectDrawer
   "autocmd!
