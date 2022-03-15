@@ -57,6 +57,8 @@ set autoindent
 set smartindent
 set cursorline
 set mouse=a
+set incsearch
+"set hlsearch
 syntax on
 
 " For file paths
