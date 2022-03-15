@@ -1,14 +1,29 @@
-call plug#begin()
+" 
+" ####################################################################### 
+" # https://github.com/wasifekbal/dotfiles-and-scripts/blob/main/.vimrc #
+" #######################################################################
+"
+" - Install vim plug
+"   curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
+" - After installing vim plug, uncomment plugs from begin to end.
+"
+" NOTE: MUST HAVE POWERLINE FONTS INSTALLED.
+"       - https://github.com/powerline/fonts
+"
 
-Plug 'preservim/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-call plug#end()
+"call plug#begin()
+"
+"Plug 'preservim/nerdtree'
+"Plug 'vim-airline/vim-airline'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+"
+"call plug#end()
 
 let mapleader = " "
 let g:UltiSnipsExpandTrigger="<tab>"
+
 " list all snippets for current filetype
 let g:UltiSnipsListSnippets="<c-l>"
 
@@ -44,10 +59,12 @@ set cursorline
 set mouse=a
 syntax on
 
+" For file paths
 set path+=**
 set wildmenu
 set wildignore+=**/node_modules/**
 
+" Converts Dos file format to Unix.
 function! ConvertDosToUnix()
   :w
   :e ++ff=dos
@@ -55,23 +72,7 @@ function! ConvertDosToUnix()
   :w
 endfunction
 
-let g:NetrwIsOpen=0
-function! ToggleNetrw()
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i
-            endif
-            let i-=1
-        endwhile
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        silent Lexplore
-    endif
-endfunction
-
+" Automatically deletes hidden buffers of NerdTREE
 augroup AutoDeleteNetrwHiddenBuffers
   au!
   au FileType netrw setlocal bufhidden=wipe
@@ -94,7 +95,7 @@ map <leader>c :call ConvertDosToUnix()<CR>
   "autocmd VimEnter * :Lex
 "augroup END
 
+" vim-airline shows all
 set noshowmode  " to get rid of thing like --INSERT--
 set noshowcmd  " to get rid of display of last command
 set shortmess+=F  " to get rid of the file name displayed in the command line bar
-
