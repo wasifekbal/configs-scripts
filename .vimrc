@@ -101,3 +101,8 @@ map <leader>c :call ConvertDosToUnix()<CR>
 set noshowmode  " to get rid of thing like --INSERT--
 set noshowcmd  " to get rid of display of last command
 set shortmess+=F  " to get rid of the file name displayed in the command line bar
+
+" If using alacritty, set ttymouse to sgr
+if $TERM == 'alacritty'
+  set ttymouse=sgr
+endif
