@@ -12,14 +12,18 @@
 "       - https://github.com/powerline/fonts
 "
 
-"call plug#begin()
-"
-"Plug 'preservim/nerdtree'
-"Plug 'vim-airline/vim-airline'
+call plug#begin()
+
+Plug 'preservim/nerdtree'
+Plug 'vim-airline/vim-airline'
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
-"
-"call plug#end()
+Plug 'ryanoasis/vim-devicons'
+"Plug 'dracula/vim', { 'as': 'dracula' }
+
+call plug#end()
+
+"colorscheme dracula
 
 let mapleader = " "
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -49,6 +53,7 @@ vnoremap <leader>y "+y
 vnoremap <leader>p "+p
 nnoremap <leader>p "+p
 
+set background=dark
 set number
 set tabstop=4
 set expandtab
@@ -61,10 +66,12 @@ set incsearch
 "set hlsearch
 syntax on
 
+
 " For file paths
 set path+=**
 set wildmenu
 set wildignore+=**/node_modules/**
+set wildignore+=**/venv/**
 
 " Converts Dos file format to Unix.
 function! ConvertDosToUnix()
