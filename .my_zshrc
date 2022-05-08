@@ -1,0 +1,21 @@
+## Import this file in ~/.zshrc
+#
+# if [ -f ~/.my_zshrc ]; then
+#     . ~/.my_zshrc
+# fi
+#
+##
+
+
+bindkey '^ ' autosuggest-accept
+ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
+#ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *"
+
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -d ~/.dircolors ] && eval `dircolors ~/.dircolors/dircolors`
+[ -f ~/.local/pastenet.sh ] && source ~/.local/pastenet.sh
+
+## replace caps key with escape
+setxkbmap -option caps:escape
+
+eval "$(starship init zsh)"
