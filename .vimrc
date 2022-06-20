@@ -60,7 +60,7 @@ set expandtab
 set shiftwidth=4
 set autoindent
 set smartindent
-set cursorline
+"set cursorline
 set mouse=a
 set incsearch
 "set hlsearch
