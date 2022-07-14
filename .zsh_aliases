@@ -1,0 +1,10 @@
+alias ip="ip -c"
+alias open="xdg-open"
+alias v="nvim"
+alias u="sudo apt update"
+alias ug="sudo apt upgrade"
+alias lu="sudo apt list --upgradable"
+alias uu="sudo apt update && sudo apt upgrade"
+
+alias copy="xclip -selection clipboard"
+alias paste="xclip -sel clip -o"
