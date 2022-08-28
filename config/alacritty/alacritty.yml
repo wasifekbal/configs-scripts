@@ -46,8 +46,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 6
-    y: 6
+    x: 3
+    y: 3
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -67,7 +67,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.95
+  opacity: 0.92
 
   # Startup Mode (changes require restart)
   #
@@ -289,6 +289,8 @@ schemas:
       white:   '#2a2a2a'
 
 colors: *dracula
+# colors: *tomorrow_night
+# colors: *tomorrow_night_bright
 
 
 # default Colors (Tomorrow Night)
