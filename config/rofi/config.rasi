@@ -1,1 +1,25 @@
-@theme "/usr/share/rofi/themes/Monokai.rasi"
+configuration {
+  font: "FiraCode NF Medium 12";
+  line-margin: 10;
+  modi: "window,run,drun,ssh,combi,keys,windowcd";
+
+  display-ssh:    "";
+  display-run:    "";
+  display-drun:   "";
+  display-window: "";
+  display-combi:  "";
+  show-icons:     true;
+  icon-theme: "Qogir";
+}
+
+/* @theme "~/.config/rofi/themes/nord.rasi" */
+@theme "~/.config/rofi/themes/squared-everforest.rasi"
+
+listview {
+	lines: 10;
+	columns: 2;
+}
+
+window {
+	width: 50%;
+}
