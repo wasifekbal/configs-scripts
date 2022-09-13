@@ -12,24 +12,18 @@
 "       - https://github.com/powerline/fonts
 "
 
-call plug#begin()
+" call plug#begin()
 
-Plug 'preservim/nerdtree'
-Plug 'vim-airline/vim-airline'
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
-Plug 'ryanoasis/vim-devicons'
-"Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'preservim/nerdtree'
+" Plug 'vim-airline/vim-airline'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'dracula/vim', { 'as': 'dracula' }
 
-call plug#end()
+" call plug#end()
 
 "colorscheme dracula
 
-let mapleader = " "
-let g:UltiSnipsExpandTrigger="<tab>"
-
-" list all snippets for current filetype
-let g:UltiSnipsListSnippets="<c-l>"
+let g:mapleader = " "
 
 let NERDTreeShowHidden=1
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -38,7 +32,13 @@ nnoremap <leader>e :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 nnoremap <leader>sf :source ~/.vimrc<CR>
-nnoremap <leader>w <C-w>w
+nnoremap <F2> :set hlsearch!<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :xa<CR>
+nnoremap <F3> :set spell!<CR>
+inoremap <F3> <C-O>:set spell!<CR>
+nnoremap <leader>s gg<S-v>G
+
 nnoremap p "0p
 nnoremap P "0P
 vnoremap x "0x
@@ -97,7 +97,8 @@ let g:netrw_preview = 1
 
 " Mappings ---------------------------------------------------
 "map <silent> <C-E> :call ToggleNetrw()<CR>
-map <leader>c :call ConvertDosToUnix()<CR>
+"map <leader>c :call ConvertDosToUnix()<CR>
+map <F2> :set hlsearch!<CR>
 
 "augroup ProjectDrawer
   "autocmd!
