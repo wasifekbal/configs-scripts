@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+
+
+import requests
+import json
+
+################################
+# New way with timezone data.  #
+################################
+
+header_options = {
+    'Authority': 'api.ipgeolocation.io' ,
+    'Accept': 'application/json' ,
+    'Accept-language': 'en-US,en;q=0.9' ,
+    'Dnt': '1' ,
+    'Origin': 'https://ipgeolocation.io' ,
+    'Referer': 'https://ipgeolocation.io/' ,
+    'Sec-fetch-dest': 'empty' ,
+    'Sec-fetch-mode': 'cors' ,
+    'Sec-fetch-site': 'same-site' ,
+    'Sec-gpc': '1' ,
+    'User-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36' ,
+}
+res = requests.get(f'https://api.ipgeolocation.io/ipgeo', headers=header_options).text
+data = json.loads(res)
+exclude_list = ['continent_code', 'country_code3', '']
+
+for key, value in data.items():
+    if key in exclude_list:
+        continue
+    if isinstance(value, str):
+        print(f"  {key} : {value if value else 'Null'}")
+    elif (isinstance(value, dict)):
+        print(f"  {key} :")
+        for k,v in value.items():
+            print(f"    {k} : {v}")
+    elif isinstance(value, bool):
+        print(f"  {key} : {value}")
+
+
+###################################
+# Old way without timezone data.  #
+###################################
+
+# ip_details = json.loads(requests.get("http://ip-api.com/json/").text)
+# print(f"""
+#  ip : {ip_details["query"]}
+#  city : {ip_details["city"]}
+#  region : {ip_details["region"]}
+#  regionName : {ip_details["regionName"]}
+#  country : {ip_details["country"]}
+#  countryCode : {ip_details["countryCode"]}
+#  isp : {ip_details["isp"]}
+#  org : {ip_details["org"]}
+#  as : {ip_details["as"]}
+#  zip : {ip_details["zip"]}
+#  lat : {ip_details["lat"]}
+#  lon : {ip_details["lon"]}
+# """)
