@@ -1,7 +1,7 @@
 configuration {
   font: "FiraCode NF Medium 12";
   line-margin: 10;
-  modi: "window,run,drun,ssh,combi,keys,windowcd";
+  modi: "window,run,drun,windowcd,emoji";
 
   display-ssh:    "";
   display-run:    "";
@@ -9,7 +9,7 @@ configuration {
   display-window: "";
   display-combi:  "";
   show-icons:     true;
-  icon-theme: "Qogir";
+  icon-theme: "Papirus-Dark";
 }
 
 /* @theme "~/.config/rofi/themes/nord.rasi" */
