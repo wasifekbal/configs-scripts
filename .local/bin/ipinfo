@@ -3,10 +3,24 @@
 
 import requests
 import json
+import argparse
+from termcolor import colored
 
-################################
-# New way with timezone data.  #
-################################
+parser = argparse.ArgumentParser(description="Get deatiled info about any IPv4, IPv6 or domain name. Without any arguments, it will fetch details of current public ip.")
+group = parser.add_mutually_exclusive_group()
+group.add_argument("-ip", "--ip-address", type=str, default=False, help="IP address (IPv4/IPv6)")
+group.add_argument("-d", "--domain", default=False, help="Domain name")
+parser.add_argument("--full", default=False, action="store_true", help="Full details without any exclution.")
+args = parser.parse_args()
+
+url = f'https://api.ipgeolocation.io/ipgeo?include=security'
+if args.ip_address:
+    if len(args.ip_address.split(".")) != 4:
+        print("Please provide a valid ip !!")
+        exit()
+    url = f"https://api.ipgeolocation.io/ipgeo?ip={args.ip_address}"
+if args.domain:
+    url = f"https://api.ipgeolocation.io/ipgeo?ip={args.domain}"
 
 header_options = {
     'Authority': 'api.ipgeolocation.io' ,
@@ -21,39 +35,44 @@ header_options = {
     'Sec-gpc': '1' ,
     'User-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36' ,
 }
-res = requests.get(f'https://api.ipgeolocation.io/ipgeo', headers=header_options).text
-data = json.loads(res)
-exclude_list = ['continent_code', 'country_code3', '']
 
-for key, value in data.items():
-    if key in exclude_list:
-        continue
-    if isinstance(value, str):
-        print(f"  {key} : {value if value else 'Null'}")
-    elif (isinstance(value, dict)):
-        print(f"  {key} :")
-        for k,v in value.items():
-            print(f"    {k} : {v}")
-    elif isinstance(value, bool):
-        print(f"  {key} : {value}")
+if not args.full:
+    exclude_list = ['continent_code', 'country_code3', 'country_flag', 'geoname_id', 'asn', 'languages', 'dst_saving', 'is_dst', "is_eu"]
+else:
+    exclude_list = []
+highlight_list = ['ip', 'country_name', 'city', 'state_prov', 'isp', 'name', 'time_zone']
 
+try:
+    res = requests.get(url, headers=header_options).text
+    data = json.loads(res)
 
-###################################
-# Old way without timezone data.  #
-###################################
+    print()
+    for key, value in data.items():
+        if key in exclude_list:
+            continue
+        if isinstance(value, str):
+            key = colored(key, "blue" if key not in highlight_list else "magenta", attrs=['bold'])
+            value = colored(value, "green")
+            print(f"  {key} : {value}")
+        elif (isinstance(value, dict)):
+            print(f"  {colored(key, 'yellow' if key not in highlight_list else 'magenta')} :")
+            for k,v in value.items():
+                if k in exclude_list:
+                    continue
+                k = colored(k, "blue" if k not in highlight_list else "magenta", attrs=['bold'])
+                v = colored(v, "green")
+                print(f"    {k} : {v}")
+        elif isinstance(value, bool):
+            key = colored(key, "blue" if key not in highlight_list else "magenta", attrs=['bold'])
+            value = colored(value, "green")
+            print(f"  {key} : {value}")
 
-# ip_details = json.loads(requests.get("http://ip-api.com/json/").text)
-# print(f"""
-#  ip : {ip_details["query"]}
-#  city : {ip_details["city"]}
-#  region : {ip_details["region"]}
-#  regionName : {ip_details["regionName"]}
-#  country : {ip_details["country"]}
-#  countryCode : {ip_details["countryCode"]}
-#  isp : {ip_details["isp"]}
-#  org : {ip_details["org"]}
-#  as : {ip_details["as"]}
-#  zip : {ip_details["zip"]}
-#  lat : {ip_details["lat"]}
-#  lon : {ip_details["lon"]}
-# """)
+except KeyboardInterrupt:
+    print("Quitting.....")
+
+except requests.exceptions.ConnectionError as e :
+    print("Unable to connect to internet.")
+
+except Exception as e :
+    print(e)
+    print("Something went wrong.....")
