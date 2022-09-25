@@ -1,11 +1,12 @@
 configuration {
-  font: "FiraCode NF Medium 12";
+  font: "FiraCode Nerd Font Medium 12";
   line-margin: 10;
   modi: "window,run,drun,windowcd,emoji";
 
   display-ssh:    "";
   display-run:    "";
-  display-drun:   "";
+  /* display-drun:   " "; */
+  display-drun:   "👉";
   display-window: "";
   display-combi:  "";
   show-icons:     true;

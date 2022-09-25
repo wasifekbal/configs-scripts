@@ -27,7 +27,7 @@
 window {
     location:   center;
     /* width:      480; */
-    y-offset:   -160;
+    y-offset:   -200;
 
     background-color:   @bg0;
 }

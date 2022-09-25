@@ -6,6 +6,9 @@
 #
 ##
 
+# neofetch
+# pfetch
+# macchina
 export EDITOR="nvim"
 
 bindkey '^ ' autosuggest-accept
@@ -17,6 +20,8 @@ ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
 [ -f ~/.local/pastenet.sh ] && source ~/.local/pastenet.sh
 
 ## replace caps key with escape
-setxkbmap -option caps:escape
+   #better solution is to change it from dconf-editor
+      #org.gnome.desktop.input-sources xkb-options -> ['caps:escape']
+#setxkbmap -option caps:escape
 
 eval "$(starship init zsh)"

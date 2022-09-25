@@ -1,7 +1,16 @@
-inputbar {
-  children: [entry];
+window {
+	width: 30%;
+  location: center;
 }
 
-/* listview { */
-/* 	lines: 5; */
-/* } */
+inputbar {
+  children: [prompt,entry];
+}
+
+textbox {
+  horizontal-align: 0.5;
+}
+
+listview {
+	lines: 5;
+}

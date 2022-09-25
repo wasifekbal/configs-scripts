@@ -1,11 +1,21 @@
 #!/bin/bash
 
-choice=$(printf " Poweroff\n勒 Reboot\n Lock\n鈴 Suspend" | rofi -dmenu -i -theme-str '@import "power.rasi"');
+# Options
+poweroff=' Poweroff';
+reboot=' Reboot';
+lock=' Lock';
+suspend=' Suspend';
+logout=' Logout';
+
+uptime=$(uptime -p | cut -b 4- -)
+
+choice=$(printf "$poweroff\n$reboot\n$lock\n$suspend\n$logout" | rofi -dmenu -p "  " -mesg "Uptime: $uptime" -i -theme ~/.config/rofi/power.rasi);
 
 case "$choice" in
-  " Poweroff") poweroff ;;
-  "勒 Reboot") reboot ;;
-  " Lock") xdg-screensaver lock ;;
-  "鈴 Suspend") systemctl suspend ;;
+  $poweroff) poweroff ;;
+  $reboot) reboot ;;
+  $lock) xdg-screensaver lock ;;
+  $suspend) systemctl suspend ;;
+  $logout) pkill -KILL -u $(whoami);;
   *) exit 1 ;;
 esac

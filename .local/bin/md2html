@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# need to have github.html template at ~/.pandoc/templates/
+pandoc $1 -o $(basename $1 .md).html --template=github 2>/dev/null

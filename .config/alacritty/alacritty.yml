@@ -129,16 +129,16 @@ Schemas:
 
   Hack: &Hack
     normal:
-      family: Hack NF
+      family: Hack Nerd Font
       style: Regular
     bold:
-      family: Hack NF
+      family: Hack Nerd Font
       style: Bold
     italic:
-      family: Hack NF
+      family: Hack Nerd Font
       style: Italic
     bold_italic:
-      family: Hack NF
+      family: Hack Nerd Font
       style: Bold Italic
     size: 11.0
 

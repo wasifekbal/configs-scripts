@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Declaring a array of fonts to be installed.
+declare -a fonts=(
+    FiraCode
+    Hack
+)
+fonts_dir="${HOME}/.local/share/fonts"
+
+# Fetching the latest version of nerd fonts.
+latest_version=$(curl --silent --url "https://www.nerdfonts.com/releases" | grep "<h2>v.*<\/h2>" - | head -1 | cut -b 5-10)
+
+# Creating a local font dir, if it doesn't exists.
+if [[ ! -d "$fonts_dir" ]]; then
+    mkdir -p "$fonts_dir"
+fi
+
+for font in "${fonts[@]}"; do
+    zip_file="${font}.zip"
+    download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/${latest_version}/${zip_file}"
+    echo "Downloading $download_url"
+
+    # Downloading the zip file in tmp dir.
+    wget --quiet "$download_url" -O "/tmp/$zip_file";
+
+    # Delete the font dir if already exists.
+    if [[ -d "$fonts_dir/$font" ]]; then
+      rm -rf "$fonts_dir/$font";
+    fi
+    # Create the font dir.
+    mkdir "$fonts_dir/$font";
+
+    # Unzip the font zip file.
+    echo "Unzipping $zip_file"; echo;
+    unzip -q "/tmp/$zip_file" -d "$fonts_dir/$font";
+
+    # Deleting the zip file after extracting.
+    rm -rf "/tmp/$zip_file"
+done
+
+# Delete all windows compatible fonts.
+find "$fonts_dir" -type f -name '*Windows Compatible*' -delete
+
+# cache all font files.
+echo "Caching all fonts."
+fc-cache -fv 1>/dev/null 2>/dev/null;
+
+echo "Completed."
