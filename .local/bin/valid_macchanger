@@ -1,0 +1,5 @@
+#!/bin/bash
+
+first_part=$(macchanger -l | shuf -n 1 | awk '{print $3}');
+second_part=$(printf '%02x:%02x:%02x' $((RANDOM%256)) $((RANDOM%256)) $((RANDOM%256)));
+sudo macchanger -m "$first_part:$second_part" enp2s0f1 &>/dev/null

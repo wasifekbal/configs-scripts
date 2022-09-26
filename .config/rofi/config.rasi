@@ -22,5 +22,7 @@ listview {
 }
 
 window {
+  location: center;
+  anchor: north;
 	width: 50%;
 }
