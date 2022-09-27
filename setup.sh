@@ -1,9 +1,20 @@
 #!/bin/bash
 
+HOME_DIR=$HOME
+
 # fonts installing...
 ./.local/bin/nerdfonts-installer
 
-HOME_DIR=$HOME
+# OMZ
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# ZSH Plugins
+git -C $HOME_DIR/.oh-my-zsh/custom/plugins clone https://github.com/zsh-users/zsh-autosuggestions.git
+git -C $HOME_DIR/.oh-my-zsh/custom/plugins clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+# starship
+curl -sS https://starship.rs/install.sh | sh
+
 
 if [[ ! -d $HOME_DIR/.config ]]; then
   mkdir "$HOME_DIR/.config";

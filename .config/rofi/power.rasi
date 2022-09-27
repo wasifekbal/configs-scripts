@@ -1,6 +1,9 @@
+@theme "~/.config/rofi/themes/squared-everforest.rasi"
+
 window {
-	width: 30%;
   location: center;
+  anchor: north;
+  width: 30%;
 }
 
 inputbar {
@@ -12,5 +15,5 @@ textbox {
 }
 
 listview {
-	lines: 5;
+  lines: 5;
 }
