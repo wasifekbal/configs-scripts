@@ -84,7 +84,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -114,5 +114,6 @@ ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
 #setxkbmap -option caps:escape
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 eval "$(starship init zsh)"

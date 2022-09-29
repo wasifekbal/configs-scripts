@@ -1,0 +1,40 @@
+# Reload functions
+# super + Escape
+# 	"$XDG_CONFIG_HOME"/sxhkd/functions
+
+# Reload sxhkd config file
+super + shift + r
+  systemctl --user reload sxhkd.service
+
+# powermenu
+alt + p
+  /home/alpha/.config/rofi/scripts/powermenu.sh
+
+# rofi drun
+alt + d
+  /usr/bin/rofi -show drun
+
+# emoji
+shift + alt + e
+  /home/alpha/.config/rofi/scripts/emoji.sh
+
+# alacritty
+alt + Return
+  /usr/bin/alacritty
+
+# Ranger
+alt + f
+  /usr/bin/alacritty -e "/usr/bin/ranger"
+
+# nmtui-window popup
+super + shift + w
+  /home/alpha/.local/bin/nmtui-window
+
+# screenshot area
+alt + @Print
+  /home/alpha/.local/bin/screenshot
+
+# screenshot full
+@Print
+  /home/alpha/.local/bin/screenshot full
+
