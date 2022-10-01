@@ -1,14 +1,21 @@
 #!/bin/bash
 
-rsync -a ~/.config/alacritty ./.config/
-rsync -a ~/.config/rofi ./.config/
-rsync -a ~/.config/ranger ./.config/
-rsync -a ~/.config/neofetch ./.config/
-rsync -a ~/.config/starship.toml ./.config/
-rsync -a ~/.config/sxhkd ./.config/
+rsync -av ~/.config/alacritty ./.config/
+rsync -av ~/.config/rofi ./.config/
+rsync -av ~/.config/ranger ./.config/
+rsync -av ~/.config/neofetch ./.config/
+rsync -av ~/.config/starship.toml ./.config/
+rsync -av ~/.config/sxhkd ./.config/
 
 
-rsync -a ~/.tmux.conf ./
-rsync -a ~/.vimrc ./
-rsync -a ~/.zshrc ./
-rsync -a ~/.zsh_aliases ./
+rsync -av ~/.tmux.conf ./
+rsync -av ~/.vimrc ./
+rsync -av ~/.zshrc ./
+rsync -av ~/.zsh_aliases ./
+
+rsync -av ~/.local/bin/ipinfo ./.local/bin/
+rsync -av ~/.local/bin/md2html ./.local/bin/
+rsync -av ~/.local/bin/nerdfonts-installer ./.local/bin/
+rsync -av ~/.local/bin/screenshot ./.local/bin/
+rsync -av ~/.local/bin/valid_macchanger ./.local/bin/
+rsync -av ~/.local/bin/vpnbook_pass ./.local/bin/

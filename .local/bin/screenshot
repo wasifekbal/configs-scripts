@@ -1,8 +1,20 @@
 #!/bin/bash
 
+SCREENSHOT_DIR="$HOME/Pictures/screenshots"
+
+if [[ ! -d $SCREENSHOT_DIR ]]; then
+  mkdir $SCREENSHOT_DIR;
+fi
+
+FILENAME=$(date +"%d-%m-%y_%H-%M-%S").png
+
 if [[ $1 == "full" ]]; then
-  /usr/bin/flameshot full
+  /usr/bin/flameshot full -r -p $SCREENSHOT_DIR/$FILENAME | xclip -selection clipboard -t image/png;
+  /usr/bin/nomacs $SCREENSHOT_DIR/$FILENAME;
+elif [[ $1 == "window" ]]; then
+  /usr/bin/import -window "$(xdotool getwindowfocus -f)" $SCREENSHOT_DIR/$FILENAME;
+  /usr/bin/nomacs $SCREENSHOT_DIR/$FILENAME;
 else
-  /usr/bin/flameshot gui -r | xclip -selection clipboard -t image/png	
+  /usr/bin/flameshot gui -r -p $SCREENSHOT_DIR/$FILENAME | xclip -selection clipboard -t image/png	
 fi
 
