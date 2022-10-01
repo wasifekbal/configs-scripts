@@ -4,11 +4,15 @@
 
 # Reload sxhkd config file
 super + shift + r
-  systemctl --user reload sxhkd.service
+  /usr/bin/pkill -USR1 -x sxhkd; /usr/bin/notify-send "sxhkd config reloaded";
 
 # powermenu
 alt + p
   /home/alpha/.config/rofi/scripts/powermenu.sh
+
+# screenlock
+super + x
+  xdg-screensaver lock
 
 # rofi drun
 alt + d
@@ -30,9 +34,17 @@ alt + f
 super + shift + w
   /home/alpha/.local/bin/nmtui-window
 
+##############
+# Screenshot #
+##############
+
 # screenshot area
 alt + @Print
   /home/alpha/.local/bin/screenshot
+
+# screenshot active window
+ctrl + @Print
+  /home/alpha/.local/bin/screenshot window
 
 # screenshot full
 @Print

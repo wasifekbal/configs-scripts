@@ -1,2 +1,2 @@
-*.git/*
-*plugged/*
+*__pycache__*
+*__init__*

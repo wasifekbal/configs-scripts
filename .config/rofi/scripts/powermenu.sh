@@ -7,9 +7,13 @@ lock=' Lock';
 suspend=' Suspend';
 logout=' Logout';
 
-uptime=$(uptime -p | cut -b 4- -)
 
-choice=$(printf "$poweroff\n$reboot\n$lock\n$suspend\n$logout" | rofi -dmenu -p "  " -mesg "Uptime: $uptime" -i -theme ~/.config/rofi/power.rasi);
+ROFI_THEME="~/.config/rofi/power.rasi"
+
+uptime=$(uptime -p | cut -b 4- -)
+options="$poweroff\n$reboot\n$lock\n$suspend\n$logout" 
+
+choice=$(echo -e $options | rofi -dmenu -p "  " -mesg "Uptime: $uptime" -i -theme $ROFI_THEME);
 
 case "$choice" in
   $poweroff) poweroff ;;
