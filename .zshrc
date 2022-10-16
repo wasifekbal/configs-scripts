@@ -116,4 +116,6 @@ ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 eval "$(starship init zsh)"

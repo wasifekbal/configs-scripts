@@ -3,7 +3,7 @@
 # 	"$XDG_CONFIG_HOME"/sxhkd/functions
 
 # Reload sxhkd config file
-super + shift + r
+alt + shift + r
   /usr/bin/pkill -USR1 -x sxhkd; /usr/bin/notify-send "sxhkd config reloaded";
 
 # powermenu
@@ -11,8 +11,9 @@ alt + p
   /home/alpha/.config/rofi/scripts/powermenu.sh
 
 # screenlock
-super + x
-  xdg-screensaver lock
+alt + shift + x:
+    /home/alpha/.local/bin/screenlock
+# xdg-screensaver lock
 
 # rofi drun
 alt + d

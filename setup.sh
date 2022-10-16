@@ -6,27 +6,48 @@ HOME_DIR=$HOME
 ./.local/bin/nerdfonts-installer
 
 # OMZ
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if [[ ! -d $HOME_DIR/.oh-my-zsh ]]; then
+  /usr/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
 # ZSH Plugins
-git -C $HOME_DIR/.oh-my-zsh/custom/plugins clone https://github.com/zsh-users/zsh-autosuggestions.git
-git -C $HOME_DIR/.oh-my-zsh/custom/plugins clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+/usr/bin/git -C $HOME_DIR/.oh-my-zsh/custom/plugins clone https://github.com/zsh-users/zsh-autosuggestions.git
+/usr/bin/git -C $HOME_DIR/.oh-my-zsh/custom/plugins clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 # starship
-curl -sS https://starship.rs/install.sh | sh
-
-
-if [[ ! -d $HOME_DIR/.config ]]; then
-  mkdir "$HOME_DIR/.config";
+if [[ $(command -v starship) ]]; then
+  echo "Skipping... Starship terminal prompt already installed."
+else
+  /usr/bin/curl -sS https://starship.rs/install.sh | sh
 fi
-cp -rf ./.config/* $HOME_DIR/.config/;
+
+## copying config files
+if [[ ! -d $HOME_DIR/.config ]]; then
+  /usr/bin/mkdir "$HOME_DIR/.config";
+fi
+/usr/bin/cp -rf ./.config/* $HOME_DIR/.config/;
 echo ".config done...";
 
+# copying files of .local
 if [[ ! -d $HOME_DIR/.local ]]; then
-  mkdir "$HOME_DIR/.local";
+  /usr/bin/mkdir "$HOME_DIR/.local";
 fi
-cp -rf ./.local/* $HOME_DIR/.local;
+/usr/bin/cp -rf ./.local/* $HOME_DIR/.local;
 echo ".local done...";
 
-cp -rf ./.zshrc ./.zsh_aliases ./.tmux.conf ./.vimrc $HOME_DIR/
+declare -a dotfiles=(
+  .zshrc
+  .zsh_aliases
+  .tmux.conf
+  .vimrc
+)
+
+# copying all the dotfiles in home directory
+for file in "${dotfiles[@]}"; do
+  if [[ -f $HOME_DIR/$file ]]; then
+    # keeping backup if a files already exists.
+    /usr/bin/mv -v $HOME_DIR/$file $HOME_DIR/$file.backup;
+  fi
+  /usr/bin/cp -v ./$file $HOME_DIR/
+done
 

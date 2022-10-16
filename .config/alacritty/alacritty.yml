@@ -115,31 +115,31 @@ Schemas:
   FiraCode: &FiraCode
     normal:
       family: FiraCode Nerd Font
-      style: Regular
+      # style: Regular
     bold:
       family: FiraCode Nerd Font
-      style: Bold
+      # style: Bold
     italic:
       family: FiraCode Nerd Font
-      style: Italic
+      # style: Italic
     bold_italic:
       family: FiraCode Nerd Font
-      style: Bold Italic
+      # style: Bold Italic
     size: 11.0
 
   Hack: &Hack
     normal:
       family: Hack Nerd Font
-      style: Regular
+      # style: Regular
     bold:
       family: Hack Nerd Font
-      style: Bold
+      # style: Bold
     italic:
       family: Hack Nerd Font
-      style: Italic
+      # style: Italic
     bold_italic:
       family: Hack Nerd Font
-      style: Bold Italic
+      # style: Bold Italic
     size: 11.0
 
 font: *FiraCode
@@ -426,6 +426,15 @@ live_config_reload: true
 #   program: /bin/zsh
 #   args:
 #     - --login
+
+shell:
+  program: /usr/bin/tmux
+  args:
+    - new-session
+    - -A
+    - -D
+    - -s
+    - main
 
 # Startup directory
 #
