@@ -114,4 +114,3 @@ set shortmess+=F  " to get rid of the file name displayed in the command line ba
 if $TERM == 'alacritty'
   set ttymouse=sgr
 endif
-

@@ -6,6 +6,7 @@ rsync -av ~/.config/ranger ./.config/
 rsync -av ~/.config/neofetch ./.config/
 rsync -av ~/.config/starship.toml ./.config/
 rsync -av ~/.config/sxhkd ./.config/
+rsync -av ~/.config/dunst ./.config/dunst/
 
 
 rsync -av ~/.tmux.conf ./

@@ -51,3 +51,7 @@ ctrl + @Print
 @Print
   /home/alpha/.local/bin/screenshot full
 
+
+alt + F9
+    notify-send "bat low" -u critical -i "battery"
+
