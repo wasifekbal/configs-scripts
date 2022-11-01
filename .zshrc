@@ -116,5 +116,24 @@ ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# jump to a directory
+fd () { cd "$(find ~/ /media/alpha/ -type d -not -path '*/\.*/*' -not -fstype 'sysfs' -not -fstype 'devfs' -not -fstype 'devtemfs' -not -fstype 'proc' | fzf)" }
+
+# edit config files.
+ec() { 
+    a=$(find ~/ -maxdepth 1 -type f -iname ".*")
+    b=$(find ~/.config ~/.local/bin -type f \
+        -not -path "*/\.cache/*" \
+        -not -path "*/\.git/*" \
+        -not -path "*/\.npm/*" \
+        -not -path "*/Cache/*" \
+        -not -path "*/node_modules/*" \
+        -not -path "*/BraveSoftware/*" \
+        -not -path "*/Code/*" \
+        -not -path "*/discord/*")
+    printf "$a\n$b" | fzf | xargs -r $EDITOR
+}
+lofi() { mpv --no-cache --no-video --ytdl-format=91 https://www.youtube.com/watch\?v\=jfKfPfyJRdk }
+
 
 eval "$(starship init zsh)"

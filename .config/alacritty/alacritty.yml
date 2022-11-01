@@ -427,14 +427,14 @@ live_config_reload: true
 #   args:
 #     - --login
 
-shell:
-  program: /usr/bin/tmux
-  args:
-    - new-session
-    - -A
-    - -D
-    - -s
-    - main
+# shell:
+#   program: /usr/bin/tmux
+#   args:
+#     - new-session
+#     - -A
+#     - -D
+#     - -s
+#     - main
 
 # Startup directory
 #

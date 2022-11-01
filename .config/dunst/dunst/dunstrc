@@ -22,7 +22,7 @@
     ### Geometry ###
 
     # for old version of dunst only!!
-    geometry = "300x10-20+60"
+    geometry = "350x10-20+60"
     # where 300x5 is the width x height, and 30+20 is the offset, 
 
     # dynamic width from 0 to 300
@@ -162,7 +162,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<b>%s</b>\n%b\n%p"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".

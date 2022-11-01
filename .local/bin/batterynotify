@@ -1,0 +1,31 @@
+#!/bin/bash
+
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+
+WARNING_LEVEL=30
+BATTERY_DISCHARGING=$(acpi -b | grep -c "Discharging")
+BATTERY_LVL=$(acpi -b | cut -d" " -f4 | sed -e 's/%,//g')
+
+# LOW_FILE=/tmp/batterylow
+FULL_FILE=/tmp/batteryfull
+
+if [[ $BATTERY_DISCHARGING -eq 1 ]] && [[ -f $FULL_FILE ]]; then
+    rm $FULL_FILE;
+# elif 
+#     [[ $BATTERY_DISCHARGING -eq 0 ]] && [[ -f $LOW_FILE ]]; then
+#     rm $LOW_FILE;
+fi
+
+if [[ $BATTERY_LVL -gt 95 ]]  &&  [[ $BATTERY_DISCHARGING -eq 0 ]]  &&  [[ ! -f $FULL_FILE ]]; then
+    notify-send "Battery Charged" "Battery is full" -i "full_bat";
+    touch $FULL_FILE;
+# elif [[ $BATTERY_LVL -le $WARNING_LEVEL ]]  &&  [[ $BATTERY_DISCHARGING -eq 1 ]]  &&  [[ ! -f $LOW_FILE ]]; then
+elif [[ $BATTERY_LVL -le $WARNING_LEVEL ]]  &&  [[ $BATTERY_DISCHARGING -eq 1 ]]; then
+    notify-send "Low Battery" "${BATTERY_LVL} battery remaining." -u critical -i "low_bat";
+    # touch $LOW_FILE;
+fi
+
+
+# add to cronjob
+# */5 * * * * /home/alpha/.local/bin/batterynotify

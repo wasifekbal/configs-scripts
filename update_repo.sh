@@ -20,3 +20,4 @@ rsync -av ~/.local/bin/nerdfonts-installer ./.local/bin/
 rsync -av ~/.local/bin/screenshot ./.local/bin/
 rsync -av ~/.local/bin/valid_macchanger ./.local/bin/
 rsync -av ~/.local/bin/vpnbook_pass ./.local/bin/
+rsync -av ~/.local/bin/batterynotify ./.local/bin/

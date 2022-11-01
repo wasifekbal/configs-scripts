@@ -4,11 +4,15 @@
 
 # Reload sxhkd config file
 alt + shift + r
-  /usr/bin/pkill -USR1 -x sxhkd; /usr/bin/notify-send "sxhkd config reloaded";
+  /usr/bin/pkill -USR1 -x sxhkd; /usr/bin/notify-send "sxhkd config reloaded" -i refresh -t 2000;
+
+# launch browser
+alt + b
+    /usr/bin/brave-browser
 
 # powermenu
 alt + p
-  /home/alpha/.config/rofi/scripts/powermenu.sh
+  /home/alpha/.config/rofi/scripts/powermenu/powermenu.sh
 
 # screenlock
 alt + shift + x:
@@ -35,6 +39,10 @@ alt + f
 super + shift + w
   /home/alpha/.local/bin/nmtui-window
 
+# wifi menu
+alt + shift + w
+    /home/alpha/.config/rofi/scripts/wifimenu
+
 ##############
 # Screenshot #
 ##############
@@ -50,8 +58,3 @@ ctrl + @Print
 # screenshot full
 @Print
   /home/alpha/.local/bin/screenshot full
-
-
-alt + F9
-    notify-send "bat low" -u critical -i "battery"
-

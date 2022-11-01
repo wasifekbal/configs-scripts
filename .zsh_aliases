@@ -2,6 +2,7 @@ alias ip="ip -c"
 alias open="xdg-open"
 alias v="nvim"
 alias server="live-server --host=0.0.0.0 --port=5500"
+alias dust="du -sh * | sort -hr"
 
 alias u="sudo apt update"
 alias ug="sudo apt upgrade"
@@ -10,7 +11,7 @@ alias uu="sudo apt update && sudo apt upgrade"
 alias i="sudo apt install"
 alias s="sudo apt search"
 alias yeet="sudo apt purge"
+alias clean="sudo apt autoremove && sudo apt autoclean"
 
 alias copy="xclip -selection clipboard"
 alias paste="xclip -sel clip -o"
-
