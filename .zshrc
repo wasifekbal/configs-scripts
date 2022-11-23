@@ -99,8 +99,14 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-## Autosuggestions
+############
+# Keybinds #
+############ Autosuggestions
 bindkey '^ ' autosuggest-accept
+
+bindkey -s '^f' "tmux-session-maker\n"
+
+
 ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
 #ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *"
 
@@ -117,7 +123,20 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # jump to a directory
-fd () { cd "$(find ~/ /media/alpha/ -type d -not -path '*/\.*/*' -not -fstype 'sysfs' -not -fstype 'devfs' -not -fstype 'devtemfs' -not -fstype 'proc' | fzf)" }
+fd () {
+    cd "$(find ~/ /media/alpha/ \
+        -type d \
+        -not -path '*/\.*/*' \
+        -not -path '*/Android/*' \
+        -not -path '*/node_modules/*' \
+        -not -path '*/venv/*' \
+        -not -path '*/\.*' \
+        -not -fstype 'sysfs' \
+        -not -fstype 'devfs' \
+        -not -fstype 'devtemfs' \
+        -not -fstype 'proc' \
+        | fzf)" 
+}
 
 # edit config files.
 ec() { 
@@ -133,7 +152,11 @@ ec() {
         -not -path "*/discord/*")
     printf "$a\n$b" | fzf | xargs -r $EDITOR
 }
-lofi() { mpv --no-cache --no-video --ytdl-format=91 https://www.youtube.com/watch\?v\=jfKfPfyJRdk }
+
+# Play audio of lofi YT live stream.
+lofi() {
+    mpv --no-cache --no-video --ytdl-format=91 https://www.youtube.com/watch\?v\=jfKfPfyJRdk 
+}
 
 
 eval "$(starship init zsh)"
