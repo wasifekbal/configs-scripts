@@ -28,6 +28,12 @@ fi
 /usr/bin/cp -rf ./.config/* $HOME_DIR/.config/;
 echo ".config done...";
 
+# my nvim configs
+/usr/bin/git -C $HOME_DIR/.config/ clone https://github.com/wasifekbal/nvim_config nvim
+#
+# devicons for ranger.
+/usr/bin/git -C $HOME_DIR/.config/ranger/plugins/ clone https://github.com/alexanderjeurissen/ranger_devicons.git
+
 # copying files of .local
 if [[ ! -d $HOME_DIR/.local ]]; then
   /usr/bin/mkdir "$HOME_DIR/.local";
