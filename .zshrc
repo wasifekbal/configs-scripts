@@ -144,8 +144,7 @@ fd () {
 
 # edit config files.
 ec() { 
-    a=$(find ~/ -maxdepth 1 -type f -iname ".*")
-    b=$(find ~/.config ~/.local/bin -type f \
+    a=$(find ~/.config ~/.local/bin -type f \
         -not -path "*/\.cache/*" \
         -not -path "*/\.git/*" \
         -not -path "*/\.npm/*" \
@@ -153,8 +152,10 @@ ec() {
         -not -path "*/node_modules/*" \
         -not -path "*/BraveSoftware/*" \
         -not -path "*/Code/*" \
-        -not -path "*/discord/*")
-    printf "$a\n$b" | fzf | xargs -r $EDITOR
+        -not -path "*/discord/*");
+    b=$(find ~/.local/bookmarks -type f -iname '*bookmarks.txt');
+    c=$(find ~/ -maxdepth 1 -type f -iname ".*");
+    printf "$a\n$b\n$c" | fzf | xargs -r $EDITOR
 }
 
 # Play audio of lofi YT live stream.
