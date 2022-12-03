@@ -97,14 +97,16 @@ bindsym $mod+shift+a focus parent
 # bindsym $mod+minus scratchpad show
 
 #navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c exec "/usr/bin/i3-msg reload && /usr/bin/dunstify 'Reloaded..' 'i3 configuration reloaded..' -i reload -t 3000"
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+# bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec "/usr/bin/i3-msg restart && /usr/bin/dunstify 'Restarted..' 'i3 restarted..' -i reload -t 3000"
 
 # exit i3 (logs you out of your X session)
 bindsym Mod4+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -153,6 +155,11 @@ mode "resize" {
         bindsym j resize grow height 5 px or 5 ppt
         bindsym k resize shrink height 5 px or 5 ppt
         bindsym l resize grow width 5 px or 5 ppt
+
+        bindsym Shift+h resize shrink width 10 px or 10 ppt
+        bindsym Shift+j resize grow height 10 px or 10 ppt
+        bindsym Shift+k resize shrink height 10 px or 10 ppt
+        bindsym Shift+l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
