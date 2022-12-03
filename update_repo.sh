@@ -22,3 +22,4 @@ rsync -av ~/.local/bin/valid_macchanger ./.local/bin/
 rsync -av ~/.local/bin/vpnbook_pass ./.local/bin/
 rsync -av ~/.local/bin/batterynotify ./.local/bin/
 rsync -av ~/.local/bin/tmux-session-maker ./.local/bin/
+rsync -av ~/.local/share/icons/custom_icons/ ./.local/share/icons/custom_icons/

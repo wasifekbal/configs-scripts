@@ -93,7 +93,7 @@ listview {
 }
 
 element {
-    padding: 3px;
+    padding: 8px;
     vertical-align: 0.5;
     border-radius: 4px;
     background-color: transparent;
@@ -102,7 +102,7 @@ element {
 }
 
 element selected.normal {
-	background-color: @nord7;
+	background-color: @nord9;
 	text-color: #2e3440;
 }
 

@@ -70,7 +70,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,6 +121,10 @@ ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
+
+mdg () {
+    mkdir -p $1 && cd $1;
+}
 
 # jump to a directory
 fd () {

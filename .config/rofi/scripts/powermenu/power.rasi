@@ -1,8 +1,7 @@
-@theme "~/.config/rofi/themes/squared-everforest.rasi"
+/* @theme "~/.config/rofi/themes/squared-everforest.rasi" */
+/* @theme "~/.config/rofi/themes/nord.rasi" */
 
 window {
-  location: center;
-  anchor: north;
   width: 30%;
 }
 

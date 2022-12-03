@@ -40,10 +40,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -111,10 +111,15 @@ bindsym Mod4+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym $mod+F11 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+# bindsym $mod+F11 exec --no-startup-id amixer -q set Master 5%+ unmute
+
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+F12 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# bindsym $mod+F12 exec --no-startup-id amixer -q set Master 5%- unmute
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+F7 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+# bindsym $mod+F7 exec --no-startup-id amixer -q set Master toggle
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 #############################
 ### settings for i3-gaps: ###
@@ -130,7 +135,7 @@ gaps outer -2
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps off
+# smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -250,9 +255,9 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 # Open applications on specific workspaces
 assign [class="firefox"] $ws2
-assign [class="Thunderbird"] $ws8
 assign [class="Pcmanfm"] $ws3
 assign [class="qBittorrent"] $ws9
+assign [class="Thunderbird"] $ws8
 assign [class="WhatSie"] $ws8
 
 # Open specific applications in floating mode
@@ -291,12 +296,13 @@ for_window [urgent="latest"] focus
 
 
 
-#########################
-### Custom key binds ###
-#########################
+#######################
+### Custom keybinds ###
+#######################
 
 # alacritty terminal
-bindsym $mod+Return exec --no-startup-id /usr/bin/alacritty
+# bindsym $mod+Return exec --no-startup-id /usr/bin/alacritty
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
 # rofi dmenu
 bindsym $mod+d exec --no-startup-id /usr/bin/rofi -show drun
@@ -305,10 +311,13 @@ bindsym $mod+d exec --no-startup-id /usr/bin/rofi -show drun
 bindsym $mod+p exec --no-startup-id /home/alpha/.config/rofi/scripts/powermenu.sh
 
 # ranger filemanager
-bindsym $mod+f exec --no-startup-id /usr/bin/alacritty -e "/usr/bin/ranger";
+bindsym $mod+f exec --no-startup-id /usr/bin/gnome-terminal -- "/usr/bin/ranger"
 
 # Lock screen
 bindsym $mod+x exec --no-startup-id /usr/bin/blurlock
+
+# hide/show polybar
+bindsym $mod+Shift+b exec --no-startup-id /usr/bin/polybar-msg cmd toggle
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -332,7 +341,7 @@ bindsym $mod+x exec --no-startup-id /usr/bin/blurlock
 # bindsym $mod+F5 exec terminal -e 'mocp'
 # bindsym $mod+t exec --no-startup-id pkill picom
 # bindsym $mod+Ctrl+t exec --no-startup-id picom -b
-# bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst' -i reload"
 # bindsym Print exec --no-startup-id i3-scrot
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
@@ -373,13 +382,13 @@ client.background           #e2e2e2
 ##########################
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id /usr/bin/pulseaudio
+# exec --no-startup-id /usr/bin/pulseaudio
 exec --no-startup-id /usr/bin/nitrogen --restore; sleep 1;
-exec --no-startup-id /usr/bin/picom -f
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id volumeicon
+# exec --no-startup-id /usr/bin/picom -f
+exec --no-startup-id /usr/bin/nm-applet
+# exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id pamac-tray
+# exec --no-startup-id /usr/bin/volumeicon
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
@@ -390,4 +399,3 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id /home/alpha/.config/polybar/launch.sh
 
 exec_always --no-startup-id setxkbmap -option caps:escape
-

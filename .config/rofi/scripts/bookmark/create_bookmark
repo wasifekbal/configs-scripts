@@ -1,0 +1,29 @@
+#!/bin/bash
+
+BOOKMARK_FILE="$HOME/.local/bookmarks/bookmarks.txt"
+
+highlighted_text=$(xclip -o)
+
+if [ ! $highlighted_text ]; then
+    notify-send "No text selected" -t 2000 -i no-document
+    exit 0;
+fi
+
+name=$(\
+    printf "OK\nCancel" \
+    | rofi -dmenu -p "  " -mesg $highlighted_text -selected-row 0 -theme-str "window{width: 800;} textbox{horizontal-align: 0.5;}")
+
+if [ "$name" = "" ]; then
+    exit 0;
+elif [ "$name" = "Cancel" ]; then
+    exit 0;
+elif [ "$name" = "OK" ]; then
+    echo $highlighted_text >> $BOOKMARK_FILE;
+    notify-send "bookmark created" "$highlighted_text" -t 5000 -u low -i bookmark_ok;
+else
+    entry="[$name] $highlighted_text"
+    echo $entry >> $BOOKMARK_FILE;
+    notify-send -t 5000 -u low "bookmark created" "$entry" -i bookmark_ok;
+fi
+
+

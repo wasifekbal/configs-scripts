@@ -1,0 +1,27 @@
+#!/bin/bash
+
+BOOKMARK_FILE="$HOME/.local/bookmarks/bookmarks.txt"
+
+if [ ! -f $BOOKMARK_FILE ]; then
+    /usr/bin/touch $BOOKMARK_FILE;
+fi
+
+selected_bookmark=$( \
+    cat $BOOKMARK_FILE | \
+    rofi -dmenu -p "  " \
+    -mesg "Select Bookmarks" \
+    -i -theme-str "window{width: 1000;} textbox{horizontal-align: 0.5;} listview{lines:15;columns:1;}" \
+)
+if [ "$selected_bookmark" = "" ]; then
+    exit 0;
+fi
+
+if [ $(printf $selected_bookmark | grep -c '^\[') ]; then
+    bookmark_url=$(echo -n $selected_bookmark | cut -d "]" -f2 | tr -d " ");
+    # echo $bookmark_url;
+    xdotool type $bookmark_url;
+else
+    # echo $selected_bookmark;
+    xdotool type $selected_bookmark;
+fi
+
