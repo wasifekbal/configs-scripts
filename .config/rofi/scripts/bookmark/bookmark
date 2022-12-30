@@ -12,10 +12,10 @@ if [ ! -f $BOOKMARK_FILE ]; then
 fi
 
 selected_bookmark=$( \
-    cat $BOOKMARK_FILE | \
+    tac $BOOKMARK_FILE | \
     rofi -dmenu -p "  " \
     -mesg "Select Bookmarks" \
-    -i -theme-str "window{width: 1000;} textbox{horizontal-align: 0.5;} listview{lines:15;columns:1;}" \
+    -i -theme-str "window{width: 1000;} textbox{horizontal-align: 0.5;} listview{lines:12;columns:1;}" \
 )
 if [ "$selected_bookmark" = "" ]; then
     exit 0;

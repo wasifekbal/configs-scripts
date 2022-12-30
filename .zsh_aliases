@@ -1,3 +1,31 @@
+# package manager
+alias u="sudo apt update"
+alias ug="sudo apt upgrade"
+alias lu="sudo apt list --upgradable"
+alias uu="sudo apt update && sudo apt upgrade"
+alias i="sudo apt install"
+alias s="sudo apt search"
+alias yeet="sudo apt purge"
+alias clean="sudo apt autoremove && sudo apt autoclean"
+
+# git
+alias gss='git status -s'
+alias gst='git status'
+alias gl='git log --stat'
+alias glp='git log --stat -p'
+alias glg='git log --graph'
+alias glgd='git log --graph --decorate --all'
+alias glo='git log --oneline --decorate'
+alias gco='git checkout'
+
+# tmux
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tksv='tmux kill-server'
+alias tkss='tmux kill-session -t'
+
 alias ip="ip -c"
 alias open="xdg-open"
 alias v="nvim"
@@ -9,15 +37,6 @@ alias l="exa -lah"
 alias ll="exa -lh"
 
 alias bcat="batcat"
-
-alias u="sudo apt update"
-alias ug="sudo apt upgrade"
-alias lu="sudo apt list --upgradable"
-alias uu="sudo apt update && sudo apt upgrade"
-alias i="sudo apt install"
-alias s="sudo apt search"
-alias yeet="sudo apt purge"
-alias clean="sudo apt autoremove && sudo apt autoclean"
 
 alias copy="xclip -selection clipboard"
 alias paste="xclip -sel clip -o"

@@ -113,6 +113,7 @@ ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 [ -d ~/.dircolors ] && eval `dircolors ~/.dircolors/dircolors`
 [ -f ~/.local/pastenet.sh ] && source ~/.local/pastenet.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## replace caps key with escape
    #better solution is to change it from dconf-editor
@@ -157,11 +158,5 @@ ec() {
     c=$(find ~/ -maxdepth 1 -type f -iname ".*");
     printf "$a\n$b\n$c" | fzf | xargs -r $EDITOR
 }
-
-# Play audio of lofi YT live stream.
-lofi() {
-    mpv --no-cache --no-video --ytdl-format=91 https://www.youtube.com/watch\?v\=jfKfPfyJRdk 
-}
-
 
 eval "$(starship init zsh)"

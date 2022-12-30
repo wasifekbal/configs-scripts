@@ -35,6 +35,9 @@ alt + Return
 alt + f
   /usr/bin/alacritty -e "/usr/bin/ranger"
 
+alt + shift + f
+  /usr/bin/thunar
+
 # nmtui-window popup
 super + shift + w
   /home/alpha/.local/bin/nmtui-window

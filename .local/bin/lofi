@@ -1,0 +1,18 @@
+#!/bin/bash
+
+
+live_lofies=(
+    "[lofi girl] https://www.youtube.com/watch?v=jfKfPfyJRdk"
+    "[nourish] https://www.youtube.com/watch?v=IjMESxJdWkg"
+    "[Abao in Tokyo] https://www.youtube.com/watch?v=kgx4WGK0oNU"
+    "[Chillhop Music] https://www.youtube.com/watch?v=7NOSDKb0HlU"
+);
+
+selected_entry=$(printf "%s\n" "${live_lofies[@]}" | fzf --height 20% --layout=reverse );
+if [ "$selected_entry" = "" ]; then exit 0; fi
+
+selected_link=$(echo $selected_entry | cut -d"]" -f2 | tr -d " ");
+echo "playing... $selected_entry";
+
+mpv --no-cache --no-video --ytdl-format=91 "$selected_link";
+

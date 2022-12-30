@@ -417,6 +417,12 @@
    msg_urgency = critical
    fullscreen = show
 
+# [battery_notification]
+#    appname = bat
+#    # msg_urgency = critical
+#    fullscreen = show
+#    timeout = 1000
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh

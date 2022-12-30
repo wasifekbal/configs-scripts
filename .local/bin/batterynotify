@@ -4,6 +4,7 @@ export DISPLAY=:0
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 
 WARNING_LEVEL=40
+BATTERY_FULL_LEVEL=95
 BATTERY_DISCHARGING=$(acpi -b | grep -c "Discharging")
 # BATTERY_LVL=$(acpi -b | cut -d" " -f4 | sed -e 's/%,//g')
 BATTERY_LVL=$(acpi -b | cut -d" " -f4 | grep -Eo "[0-9]{1,}")
@@ -18,11 +19,13 @@ if [[ $BATTERY_DISCHARGING -eq 1 ]] && [[ -f $FULL_FILE ]]; then
 #     rm $LOW_FILE;
 fi
 
-if [[ $BATTERY_LVL -gt 95 ]]  &&  [[ $BATTERY_DISCHARGING -eq 0 ]]  &&  [[ ! -f $FULL_FILE ]]; then
+if [[ $BATTERY_LVL -gt $BATTERY_FULL_LEVEL ]]  &&  [[ $BATTERY_DISCHARGING -eq 0 ]]  &&  [[ ! -f $FULL_FILE ]]; then
+    # dunstify "Battery Charged" "Battery is full" -i full_bat -a bat;
     notify-send "Battery Charged" "Battery is full" -i full_bat;
     touch $FULL_FILE;
 # elif [[ $BATTERY_LVL -le $WARNING_LEVEL ]]  &&  [[ $BATTERY_DISCHARGING -eq 1 ]]  &&  [[ ! -f $LOW_FILE ]]; then
 elif [[ $BATTERY_LVL -le $WARNING_LEVEL ]]  &&  [[ $BATTERY_DISCHARGING -eq 1 ]]; then
+    # dunstify "Low Battery" "${BATTERY_LVL} battery remaining." -u critical -i low-bat -a bat;
     notify-send "Low Battery" "${BATTERY_LVL} battery remaining." -u critical -i low-bat;
     # touch $LOW_FILE;
 fi
