@@ -1,0 +1,5 @@
+#!/bin/bash
+
+current_ses_name=$(tmux display-message -p '#S')
+tmux switchc -p
+tmux kill-session -t $current_ses_name;
