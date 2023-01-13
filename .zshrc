@@ -127,9 +127,9 @@ mdg () {
     mkdir -p $1 && cd $1;
 }
 
-# jump to a directory
+# jump to a directory in $HOME
 fd () {
-    cd "$(find ~/ /media/alpha/ \
+    cd "$(find ~/ \
         -type d \
         -not -path '*/\.*/*' \
         -not -path '*/Android/*' \
@@ -140,11 +140,19 @@ fd () {
         -not -fstype 'devfs' \
         -not -fstype 'devtemfs' \
         -not -fstype 'proc' \
-        | fzf)" 
+        | fzf)"
+}
+
+# jump to a directory in media
+fdm () {
+    cd "$(find /media/alpha/s1 \
+        /media/alpha/s2/ \
+        -type d \
+        | fzf)"
 }
 
 # edit config files.
-ec() { 
+ec() {
     a=$(find ~/.config ~/.local/bin -type f \
         -not -path "*/\.cache/*" \
         -not -path "*/\.git/*" \

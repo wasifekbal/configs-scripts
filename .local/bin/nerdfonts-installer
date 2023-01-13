@@ -4,6 +4,7 @@
 declare -a fonts=(
     FiraCode
     Hack
+    JetBrainsMono
 )
 fonts_dir="${HOME}/.local/share/fonts"
 
