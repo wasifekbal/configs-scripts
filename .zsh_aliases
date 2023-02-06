@@ -17,6 +17,10 @@ alias glg='git log --graph'
 alias glgd='git log --graph --decorate --all'
 alias glo='git log --oneline --decorate'
 alias gco='git checkout'
+alias gd="git diff"
+alias gcm="git commit -m"
+alias gad="git add"
+alias gpom="git push origin main"
 
 # tmux
 alias ta='tmux attach -t'

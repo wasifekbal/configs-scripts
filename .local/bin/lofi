@@ -14,5 +14,5 @@ if [ "$selected_entry" = "" ]; then exit 0; fi
 selected_link=$(echo $selected_entry | cut -d"]" -f2 | tr -d " ");
 echo "playing... $selected_entry";
 
-mpv --no-cache --no-video --ytdl-format=91 "$selected_link";
+/usr/bin/mpv --no-cache --no-video --ytdl-format=91 "$selected_link";
 
