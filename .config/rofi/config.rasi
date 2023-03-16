@@ -2,7 +2,7 @@ configuration {
   /* font: "FiraCode Nerd Font Medium 12"; */
   font: "JetBrainsMono Nerd Font Medium 12";
   line-margin: 10;
-  modi: "window,run,drun,windowcd,emoji";
+  modi: "window,ssh,run,drun,windowcd,emoji";
 
   display-ssh:    "";
   display-run:    "";

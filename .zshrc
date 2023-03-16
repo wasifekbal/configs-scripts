@@ -1,5 +1,16 @@
-# If you come from bash you might have to change your $PATH.
+#
+# ███████╗███████╗██╗  ██╗██████╗  ██████╗
+# ╚══███╔╝██╔════╝██║  ██║██╔══██╗██╔════╝
+#   ███╔╝ ███████╗███████║██████╔╝██║     
+#  ███╔╝  ╚════██║██╔══██║██╔══██╗██║     
+# ███████╗███████║██║  ██║██║  ██║╚██████╗
+# ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
+#                                         
+
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -103,7 +114,6 @@ fi
 # Keybinds #
 ############ Autosuggestions
 bindkey '^ ' autosuggest-accept
-
 bindkey -s '^f' "tmux-session-maker\n"
 
 
@@ -119,9 +129,6 @@ ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
    #better solution is to change it from dconf-editor
       #org.gnome.desktop.input-sources xkb-options -> ['caps:escape']
 #setxkbmap -option caps:escape
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export XDG_CONFIG_HOME="$HOME/.config"
 
 mdg () {
     mkdir -p $1 && cd $1;

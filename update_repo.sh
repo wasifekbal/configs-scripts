@@ -24,7 +24,7 @@ rsync -av ~/.local/bin/vpnbook_pass ./.local/bin/
 rsync -av ~/.local/bin/batterynotify ./.local/bin/
 rsync -av ~/.local/bin/tmux-session-maker ./.local/bin/
 rsync -av ~/.local/bin/lofi ./.local/bin/
-rsync -av ~/.local/bin/texit ./.local/bin/texit
+rsync -av ~/.local/bin/tsq ./.local/bin/tsq
 
 
 rsync -av ~/.local/share/icons/custom_icons/ ./.local/share/icons/custom_icons/
