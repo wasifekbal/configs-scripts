@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# binary dependencies:-
+#   - playerctl
+#   - pulsemixer
+#   - amixer
+#   - dunstify
+
+# Works on both pulseaudio and pipewire.
+# works only on default sink and sources.
+
+function send_notification() {
+    # get current volume
+	volume=$(pulsemixer --get-volume | cut -d " " -f1)
+	dunstify \
+        -a "media-controller" \
+        -u low \
+        -r "9999" \
+        -i "voice" \
+        "Volume $volume%" \
+        -t 1500
+}
+
+case $1 in
+play-pause)
+    playerctl play-pause
+    ;;
+volume-up)
+	# Set the volume on (if it was muted)
+    [ $(pulsemixer --get-mute) -eq 1 ] && pulsemixer --unmute
+    # increase volume by 5%
+    pulsemixer --change-volume +5
+	send_notification $1
+	;;
+volume-down)
+	# Set the volume on (if it was muted)
+    [ $(pulsemixer --get-mute) -eq 1 ] && pulsemixer --unmute
+    # decrease volume by 5%
+    pulsemixer --change-volume -5
+	send_notification $1
+	;;
+volume-mute-toggle)
+	if [ $(pulsemixer --get-mute) -eq 0 ]; then
+        pulsemixer --mute
+		dunstify -a "media-controller" -t 1500 -r 9999 -u low -i "voice-mute" "Muted"
+	else
+        pulsemixer --unmute
+		send_notification up
+	fi
+	;;
+mic-mute-toggle)
+    amixer set Capture toggle \
+        && amixer get Capture | grep "\[on\]" \
+        && dunstify -a "media-controller" -r 9999 -t 2000 -i "mic" "Mic ON" \
+        || dunstify -a "media-controller" -r 9999 -t 2000 -i "mic-mute2" "Mic OFF";
+    ;;
+play-next)
+    playerctl next
+    ;;
+play-previous)
+    playerctl previous 
+    ;;
+esac

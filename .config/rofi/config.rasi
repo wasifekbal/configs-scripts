@@ -14,8 +14,9 @@ configuration {
   icon-theme: "Papirus-Dark";
 }
 
-/* @theme "~/.config/rofi/themes/nord.rasi" */
-@theme "~/.config/rofi/themes/squared-everforest.rasi"
+@theme "~/.config/rofi/themes/nord.rasi"
+/* @theme "~/.config/rofi/themes/squared-everforest.rasi" */
+/* @theme "~/.config/rofi/themes/catppuccin-macchiato.rasi" */
 
 listview {
 	lines: 10;
@@ -24,6 +25,6 @@ listview {
 
 window {
   location: center;
-  anchor: north;
+  anchor: center;
 	width: 50%;
 }

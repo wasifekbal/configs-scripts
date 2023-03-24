@@ -1,3 +1,13 @@
+#                                                         
+# ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ ██████╗  ██████╗
+# ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗██╔══██╗██╔════╝
+# ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║██████╔╝██║     
+# ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║██╔══██╗██║     
+# ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝██║  ██║╚██████╗
+# ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝
+#                                                         
+
+
 # Reload functions
 # super + Escape
 # 	"$XDG_CONFIG_HOME"/sxhkd/functions
@@ -17,11 +27,10 @@ alt + p
 # screenlock
 alt + shift + x:
     /home/alpha/.local/bin/screenlock
-# xdg-screensaver lock
 
 # rofi drun
 alt + d
-  /usr/bin/rofi -show drun
+  rofi -show drun
 
 # emoji
 shift + alt + e
@@ -67,3 +76,19 @@ alt + Insert
 
 alt + shift + Insert
     /home/alpha/.config/rofi/scripts/bookmark/create_bookmark
+
+##############
+# media keys #
+##############
+
+# mic and volume mute and unmute
+alt + {F6,F7}
+    /home/alpha/.local/bin/media-controler {mic-mute-toggle,volume-mute-toggle}
+
+# play or pause music and play next or previous music
+alt + {F8,F9,F10}
+    /home/alpha/.local/bin/media-controler {play-previous,play-next,play-pause}
+
+# volume up and down.
+alt + {F11,F12}
+    /home/alpha/.local/bin/media-controler {volume-up,volume-down}

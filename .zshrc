@@ -1,11 +1,11 @@
-#
+# ----------------------------------------
 # ███████╗███████╗██╗  ██╗██████╗  ██████╗
 # ╚══███╔╝██╔════╝██║  ██║██╔══██╗██╔════╝
 #   ███╔╝ ███████╗███████║██████╔╝██║     
 #  ███╔╝  ╚════██║██╔══██║██╔══██╗██║     
 # ███████╗███████║██║  ██║██║  ██║╚██████╗
 # ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
-#                                         
+# ----------------------------------------
 
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -109,6 +109,11 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+###########
+# Options #
+###########
+setopt HIST_IGNORE_SPACE
 
 ############
 # Keybinds #
