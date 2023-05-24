@@ -102,6 +102,7 @@ scrolling:
   history: 10000
   # Scrolling distance multiplier.
   multiplier: 3
+
 # Font configuration
 Schemas:
   FiraCode: &FiraCode
@@ -146,8 +147,8 @@ Schemas:
       family: JetBrainsMono Nerd Font
       # style: Bold Italic
     size: 11.0
-# font: *FiraCode
-font: *JetBrainsMono
+font: *FiraCode
+# font: *JetBrainsMono
 
 
 # Offset is the extra space around each character. `offset.y` can be thought

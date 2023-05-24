@@ -82,13 +82,13 @@ alt + shift + Insert
 ##############
 
 # mic and volume mute and unmute
-alt + {F6,F7}
-    /home/alpha/.local/bin/media-controler {mic-mute-toggle,volume-mute-toggle}
+# alt + {F6,F7}
+#     /home/alpha/.local/bin/media-controler {mic-mute-toggle,volume-mute-toggle}
 
 # play or pause music and play next or previous music
-alt + {F8,F9,F10}
-    /home/alpha/.local/bin/media-controler {play-previous,play-next,play-pause}
+# alt + {F8,F9,F10}
+#     /home/alpha/.local/bin/media-controler {play-previous,play-next,play-pause}
 
 # volume up and down.
-alt + {F11,F12}
-    /home/alpha/.local/bin/media-controler {volume-up,volume-down}
+# alt + {F11,F12}
+#     /home/alpha/.local/bin/media-controler {volume-down,volume-up}

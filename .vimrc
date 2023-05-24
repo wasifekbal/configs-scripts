@@ -39,6 +39,8 @@ nnoremap <F3> :set spell!<CR>
 inoremap <F3> <C-O>:set spell!<CR>
 nnoremap <leader>s gg<S-v>G
 
+vnoremap "p" ""_dP"
+
 nnoremap p "0p
 nnoremap P "0P
 vnoremap x "0x
