@@ -88,11 +88,11 @@ disabled = false
 # Replace the "❯" symbol in the prompt with "➜"
 [character]
 # success_symbol = "[➜](bold green)"
-success_symbol = "[](bold green)"
+success_symbol = "[󰊕](bold green)"
 # success_symbol = "[ﬦ](bold green)"
 
 # error_symbol = "[➜](bold red)"
-error_symbol = "[](bold red)"
+error_symbol = "[󰊕](bold red)"
 # error_symbol = "[ﬦ](bold red)"
 
 [fill]
