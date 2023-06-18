@@ -16,6 +16,9 @@
 alt + shift + r
   /usr/bin/pkill -USR1 -x sxhkd; /usr/bin/notify-send -i refresh -t 2000 "sxhkd config reloaded";
 
+ctrl + Delete
+    xkill
+
 # launch browser
 alt + b
     /usr/bin/brave-browser
