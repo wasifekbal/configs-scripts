@@ -77,7 +77,7 @@ sudo systemctl restart mysql.service
 
 
 # Get Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions
-if [[ -d $HOME/.nvm ]]; then
+if [[ -d $HOME/nvm ]]; then
     echo -e "\nnvm is already installed."
     read -p "Do you want to reinstall nvm? (y/N): " reinstall_nvm
     if [[ $reinstall_nvm == "y" || $reinstall_nvm == "Y" ]]; then
