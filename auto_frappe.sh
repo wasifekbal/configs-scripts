@@ -43,10 +43,14 @@ sudo apt install -y \
     python3 \
     python3-dev \
     python3-pip \
+    python3-venv \
     redis-server \
     software-properties-common \
     mariadb-server \
     mariadb-client
+
+# restart mariadb service
+sudo systemctl restart mariadb.service
 
 printf "\n"
 read -p "$ Did you got a prompt to set the MySQL root password? [Y/n] " got_mysql_prompt;
@@ -72,8 +76,8 @@ default-character-set = utf8mb4
 EOF
 echo "#######################################"
 
-# restart mysql aka mariadb service
-sudo systemctl restart mysql.service
+# restart mariadb service
+sudo systemctl restart mariadb.service
 
 
 # Get Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions
