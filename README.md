@@ -5,5 +5,5 @@ curl -sSfL https://raw.githubusercontent.com/wasifekbal/dotfiles/main/server/ser
 
 **For automatic frappe framework setup**
 ```bash
-curl -sSfL https://raw.githubusercontent.com/wasifekbal/dotfiles/main/auto_frappe.sh | bash
+curl -sSfL https://raw.githubusercontent.com/wasifekbal/dotfiles/main/auto_frappe.sh -o auto_frappe.sh && bash auto_frappe.sh
 ```

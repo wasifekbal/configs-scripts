@@ -6,8 +6,25 @@
 
 export XDG_CONFIG_HOME=$HOME
 export XDG_CONFIG_CONFIG=$HOME/.config
+export PATH=$HOME/.local/bin:$PATH
+
+USERNAME=$(whoami)
+
+# Function to execute a command as root
+exe_as_root() {
+    # Request sudo password
+    sudo -v
+    # Check if sudo credentials are still valid
+    if sudo -n true 2>/dev/null; then
+        # Execute the command as root
+        sudo -E "$@"
+    else
+        echo "Incorrect sudo password. Command execution failed."
+    fi
+}
 
 function install_nvm {
+    /usr/bin/mkdir -p "$HOME/.local/bin"
     curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
     # required for nvm
     export NVM_DIR="$HOME/nvm"
@@ -26,19 +43,19 @@ function install_nvm {
 if [[ $VERSION_ID < "20.04" ]]; then
     echo -e "\n[!] Ubuntu version is older than 20.04"
     echo -e "[!] Adding repo for mariadb from ubuntu xenial."
-    sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
-    sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ubuntu-tw.org/mirror/mariadb/repo/10.3/ubuntu xenial main'
+    exe_as_root apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+    exe_as_root add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ubuntu-tw.org/mirror/mariadb/repo/10.3/ubuntu xenial main'
 fi
 
 # Update and upgrade the packages
 echo -e "\n[+] Updating packages..."
-sudo apt update
+exe_as_root apt update
 echo -e "\n[+] Upgrading packages..."
-sudo apt upgrade -y
+exe_as_root apt upgrade -y
 
 # Installing required packages.
-echo "\n[+] Installing required packages..."
-sudo apt install -y \
+echo -e "\n[+] Installing required packages..."
+exe_as_root apt install -y \
     git \
     python3 \
     python3-dev \
@@ -49,21 +66,23 @@ sudo apt install -y \
     mariadb-server \
     mariadb-client
 
+sleep 2
 # restart mariadb service
-sudo systemctl restart mariadb.service
+exe_as_root systemctl restart mariadb.service
+sleep 2
 
 printf "\n"
 read -p "$ Did you got a prompt to set the MySQL root password? [Y/n] " got_mysql_prompt;
 
 sleep 2
 if [[ "$got_mysql_prompt" == "n" ]]; then
-    sudo mysql_secure_installation
+    exe_as_root mysql_secure_installation
 fi
 
 # Append lines to /etc/mysql/my.cnf
 echo -e "\n[+] Adding config to /etc/mysql/my.cnf"
 echo "#######################################"
-sudo tee -a /etc/mysql/my.cnf << EOF
+exe_as_root tee -a /etc/mysql/my.cnf << EOF
 
 [mysqld]
 character-set-client-handshake = FALSE
@@ -77,7 +96,7 @@ EOF
 echo "#######################################"
 
 # restart mariadb service
-sudo systemctl restart mariadb.service
+exe_as_root systemctl restart mariadb.service
 
 
 # Get Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions
@@ -101,7 +120,7 @@ npm install -g yarn
 
 # Installing wkhtmltopdf....
 echo -e "\n\n[+] Installing wkhtmltopdf...."
-sudo apt install xvfb libfontconfig wkhtmltopdf
+exe_as_root apt install -y xvfb libfontconfig wkhtmltopdf
 
 echo -e "\n\n[+] Installing frappe-bench python package..."
 pip3 install frappe-bench

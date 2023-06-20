@@ -4,6 +4,7 @@
 # set PATH so it includes user's private bin if it exists
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
+export EDITOR="vim"
 
 # Set up the prompt
 fpath+=$HOME/.zsh/pure
@@ -60,14 +61,31 @@ bindkey '^ ' autosuggest-accept
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
-[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
+###########
+# Aliases #
+###########
 
-export EDITOR="nvim"
+# package manager
+alias u="sudo apt update"
+alias ug="sudo apt upgrade"
+alias lu="sudo apt list --upgradable"
+alias uu="sudo apt update && sudo apt upgrade"
+alias i="sudo apt install"
+alias s="apt search"
+alias yeet="sudo apt purge"
+alias clean="sudo apt autoremove && sudo apt autoclean"
 
-if command -v nvm &>/dev/null; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
+# misc
+alias ip="ip -c"
+alias v="vim"
+alias dust="du -sh * | sort -hr"
+alias bcat="batcat"
+alias q="exit"
+alias l="exa -lah"
+alias ll="exa -lh"
+
+export NVM_DIR="$HOME/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 mdg () { mkdir -p $1 && cd $1; }

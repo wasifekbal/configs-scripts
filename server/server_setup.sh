@@ -1,6 +1,20 @@
 #!/bin/bash
 
+# Function to execute a command as root
+exe_as_root() {
+    # Request sudo password
+    sudo -v
+    # Check if sudo credentials are still valid
+    if sudo -n true 2>/dev/null; then
+        # Execute the command as root
+        sudo -E "$@"
+    else
+        echo "Incorrect sudo password. Command execution failed."
+    fi
+}
+
 HOME_DIR=$HOME
+CURRENT_USER=$(whoami)
 
 # Check Ubuntu distribution
 if [ -f /etc/lsb-release ]; then
@@ -25,14 +39,14 @@ echo "[+] Detected distribution: $DISTRIBUTION $VERSION"
 # Install required packages based on the distribution
 case $DISTRIBUTION in
     Ubuntu)
-        sudo apt update
-        sudo apt install -y wget curl git zsh
+        exe_as_root apt update
+        exe_as_root apt install -y wget curl git zsh ranger vim bat exa locales
         ;;
     "Arch Linux")
-        sudo pacman -Sy --noconfirm wget curl git zsh
+        exe_as_root pacman -Sy --noconfirm wget curl git zsh
         ;;
     CentOS)
-        sudo yum install -y wget curl git zsh
+        exe_as_root yum install -y wget curl git zsh
         ;;
     *)
         echo "Unsupported distribution: $DISTRIBUTION"
@@ -40,10 +54,24 @@ case $DISTRIBUTION in
         ;;
 esac
 
+
+echo "[+] Setting up locales..."
+exe_as_root tee /etc/default/locale << EOF
+LANGUAGE="en_US.UTF-8"
+LC_ALL="en_US.UTF-8"
+LANG="en_US.UTF-8"
+EOF
+
+exe_as_root locale-gen en_US.UTF-8
+exe_as_root update-locale
+
+# restart mariadb service
+exe_as_root systemctl restart mariadb.service
+
 echo "[+] Required packages installed successfully."
 
 echo "[+] Setting zsh as default shell."
-/usr/bin/chsh -s $(which zsh) $LOGNAME
+exe_as_root /usr/bin/chsh -s $(which zsh) $CURRENT_USER
 
 if [ ! -d $HOME_DIR/.zsh ]; then
     echo "[+] Creating directory $HOME_DIR/.zsh"
@@ -76,7 +104,7 @@ echo "[+] Getting zsh-syntax-highlighting"
     https://github.com/zsh-users/zsh-syntax-highlighting.git \
     "$HOME_DIR/.zsh/zsh-syntax-highlighting"
 
-/usr/bin/wget -q -O $HOME_DIR/.zsh/directories.sh "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/directories.zsh"
+/usr/bin/wget -q -O $HOME_DIR/.zsh/directories.zsh "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/directories.zsh"
 
 echo "[+] Cloning dotfiles repo in '/tmp/dotfiles'"
 /usr/bin/git \
@@ -85,25 +113,29 @@ echo "[+] Cloning dotfiles repo in '/tmp/dotfiles'"
     https://github.com/wasifekbal/dotfiles.git \
     "/tmp/dotfiles"
 
+/usr/bin/mkdir -p "$HOME_DIR/.local/bin"
+
 echo "[+] Copying required configs and dotfiles."
 echo "[+] dotfiles:"
-echo "    -> .zshrc"
+echo " |--> .zshrc"
 /usr/bin/cp /tmp/dotfiles/server/.zshrc $HOME_DIR/
-echo "    -> .tmux.conf"
+echo " |--> .tmux.conf"
 /usr/bin/cp /tmp/dotfiles/.tmux.conf $HOME_DIR/
-echo "    -> .vimrc"
+echo " |--> .vimrc"
 /usr/bin/cp /tmp/dotfiles/.vimrc $HOME_DIR/
 
 if [[ ! -d $HOME_DIR/.config ]]; then
     /usr/bin/mkdir "$HOME_DIR/.config"
 fi
 echo "[+] Config:"
-echo "    -> ranger"
+echo " |--> ranger"
 /usr/bin/cp -r /tmp/dotfiles/.config/ranger $HOME_DIR/.config/ranger
 # devicons for ranger.
+/usr/bin/mkdir -p $HOME_DIR/.config/ranger/plugins
 /usr/bin/git -C $HOME_DIR/.config/ranger/plugins/ clone --quiet https://github.com/alexanderjeurissen/ranger_devicons.git
 
 echo "[+] Removing /tmp/dotfiles."
 rm -rf /tmp/dotfiles
 
 echo "[+] Finished."
+echo "[+] Please restart the terminal before doing anything else !!"
