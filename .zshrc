@@ -10,6 +10,10 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+if [ -d $HOME/.local/go/bin ]; then
+    export PATH="$HOME/.local/go/bin:$PATH"
+fi
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Path to your oh-my-zsh installation.
@@ -178,6 +182,16 @@ ec() {
     b=$(find ~/.local/bookmarks -type f -iname '*bookmarks.txt');
     c=$(find ~/ -maxdepth 1 -type f -iname ".*");
     printf "$a\n$b\n$c" | fzf | xargs -r $EDITOR
+}
+
+kt (){
+    for ((i = 0; i < 25; i++)); do
+        sudo -u root pkill -9 teamviewer
+        sudo -u root pkill -9 teamviewerd
+        sudo -u root pkill -9 TeamViewer
+        printf "$i\r";
+    done
+    echo "done.."
 }
 
 eval "$(starship init zsh)"

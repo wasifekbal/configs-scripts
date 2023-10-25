@@ -14,9 +14,10 @@
 #  - /path/to/alacritty.yml
 ## themes file.
 import:
-  - ~/.config/alacritty/themes/material.yml
+  # - ~/.config/alacritty/themes/material.yml
   # - ~/.config/alacritty/themes/palenight.yml
   # - ~/.config/alacritty/themes/catppuccin/catppuccin-frappe.yml
+  - ~/.config/alacritty/themes/catppuccin/catppuccin-macchiato.yml
   # - ~/.config/alacritty/themes/catppuccin/catppuccin-mocha.yml
   # - ~/.config/alacritty/themes/tomorrow_night/tomorrow_night_bright.yml
   #
@@ -286,15 +287,15 @@ live_config_reload: true
 #   program: /bin/zsh
 #   args:
 #     - --login
-# shell:
-#   program: tmux
-#   args:
-#     - -u
-#     - new-session
-#     - -A
-#     - -D
-#     - -s
-#     - main
+shell:
+  program: tmux
+  args:
+    - -u
+    - new-session
+    - -A
+    - -D
+    - -s
+    - main
     # Startup directory
     #
     # Directory the shell is started in. If this is unset, or `None`, the working

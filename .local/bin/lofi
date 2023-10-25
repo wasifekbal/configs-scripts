@@ -13,11 +13,12 @@ fi
 
 LOFI_YT_URLS=(
     "[lofi girl live] https://www.youtube.com/watch?v=jfKfPfyJRdk"
-    "[nourish live] https://www.youtube.com/watch?v=IjMESxJdWkg"
-    "[Abao in Tokyo live] https://www.youtube.com/watch?v=6D2p1UYM1Yw"
-    "[Chillhop Music live] https://www.youtube.com/watch?v=7NOSDKb0HlU"
+    "[nourish live] https://www.youtube.com/watch?v=apCom1TeTiA"
+    "[Abao in Tokyo live] https://www.youtube.com/watch?v=HAZoLuME-PU"
+    "[Chillhop Music live] https://www.youtube.com/watch?v=5yx6BWlEVcY"
     "[Study/Work Mix 24H] https://www.youtube.com/watch?v=X28GzyyN6G4"
     "[Pomodoro 4H 60-10] https://www.youtube.com/watch?v=vC4dLeqnvAw"
+    "[Relax Quiet cafe] https://www.youtube.com/watch?v=zr5JjgOMXeQ"
 );
 
 selected_entry=$(printf "%s\n" "${LOFI_YT_URLS[@]}" | fzf --height 20% --layout=reverse );
@@ -35,7 +36,7 @@ VIDEO_INFO=$(youtube-dl --dump-json "$selected_link" 2>/dev/null)
 # Check if the video is live
 IS_LIVE=$(echo "$VIDEO_INFO" | jq -r '.is_live')
 
-if [ "$IS_LIVE" = "false" ]; then
+if [ "$IS_LIVE" = "false" ] || [ "$IS_LIVE" = "null" ]; then
     YTDL_FORMAT=251
 else
     YTDL_FORMAT=91
