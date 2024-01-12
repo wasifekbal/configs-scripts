@@ -147,7 +147,7 @@ Schemas:
     bold_italic:
       family: JetBrains Mono Nerd Font
       # style: Bold Italic
-    size: 11.0
+    size: 12.0
 # font: *FiraCode
 font: *JetBrainsMono
 
@@ -287,15 +287,17 @@ live_config_reload: true
 #   program: /bin/zsh
 #   args:
 #     - --login
-shell:
-  program: tmux
-  args:
-    - -u
-    - new-session
-    - -A
-    - -D
-    - -s
-    - main
+
+# shell:
+#   program: tmux
+#   args:
+#     - -u
+#     - new-session
+#     - -A
+#     - -D
+#     - -s
+#     - main
+
     # Startup directory
     #
     # Directory the shell is started in. If this is unset, or `None`, the working

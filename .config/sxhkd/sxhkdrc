@@ -27,6 +27,9 @@ alt + b
 alt + p
   /home/alpha/.config/rofi/scripts/powermenu/powermenu.sh
 
+shift + alt + x
+    xdg-screensaver lock
+
 # screenlock
 alt + shift + x:
     /home/alpha/.local/bin/screenlock

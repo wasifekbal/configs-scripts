@@ -54,8 +54,8 @@ if [[ "$TERM" = "xterm-kitty" ]]; then
     alias ssh="kitten ssh"
 fi
 
-alias l="exa -lah"
-alias ll="exa -lh"
+alias l="exa -lh"
+alias ll="exa -lah"
 
 alias copy="xclip -selection clipboard"
 alias paste="xclip -sel clip -o"

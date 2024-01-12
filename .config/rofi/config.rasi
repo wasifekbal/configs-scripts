@@ -1,6 +1,6 @@
 configuration {
-  font: "FiraCode Nerd Font Medium 11";
-  /* font: "JetBrainsMono Nerd Font Medium 12"; */
+  /* font: "FiraCode Nerd Font Medium 11"; */
+  font: "JetBrainsMono Nerd Font SemiBold 12";
   line-margin: 10;
   modi: "window,ssh,run,drun,windowcd,emoji";
 
