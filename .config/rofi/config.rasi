@@ -28,3 +28,18 @@ window {
   anchor: center;
 	width: 50%;
 }
+
+configuration {
+    kb-accept-entry: "Control+m,Return,KP_Enter";
+    kb-row-down: "Down,Control+j";
+
+    kb-remove-to-eol: "";
+    kb-row-up: "Up,Control+k";
+
+    kb-mode-complete: "";
+    kb-row-right: "Control+l";
+
+    kb-remove-char-back: "BackSpace,Shift+BackSpace";
+    kb-row-left: "Control+h";
+}
+

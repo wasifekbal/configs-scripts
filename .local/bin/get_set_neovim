@@ -1,0 +1,10 @@
+#!/bin/bash
+
+latest_version=$(curl --silent https://github.com/neovim/neovim/releases | grep -iE "Nvim [0-9].*?<\/h2>" | grep -o "[0-9]\.[0-9]\.[0-9]" | head -n 1)
+url="https://github.com/neovim/neovim/releases/download/v$latest_version/nvim-linux64.tar.gz"
+wget -q -P /tmp $url
+tar -zxf /tmp/nvim-linux64.tar.gz --directory ~/.local/
+ln -sf $HOME/.local/nvim-linux64/bin/nvim $HOME/.local/bin/nvim
+rm -rf /tmp/nvim-linux64.tar.gz
+nvim --version
+git clone https://github.com/wasifekbal/nvim_config.git ~/.config/nvim
