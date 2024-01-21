@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ ! $(which tor) ]]; then
+    echo -e "Tor not found!! Installing Tor.\n";
+    sudo apt install -y tor; clear;
+fi
+
+if [[ $1 ]]; then
+    sec=$1;
+else
+    sec=10;
+fi
+
+echo "Starting TOR service...."
+sudo systemctl start tor
+sleep 3;
+
+echo "IP will change every $sec second/s"
+while true; do
+    echo -e "\nGetting new IP."
+    sudo systemctl reload tor;
+    echo "IP: "$(curl -s -x socks5://127.0.0.1:9050 "https://api.ipify.org")
+    sleep 10;
+done
+
