@@ -9,9 +9,13 @@ if [[ ! -f /tmp/nvim-linux64.tar.gz ]]; then
     exit
 fi
 tar -zxf /tmp/nvim-linux64.tar.gz --directory ~/.local/
+[[ ! -d $HOME/.local/bin ]] && mkdir -p $HOME/.local/bin
 ln -sf $HOME/.local/nvim-linux64/bin/nvim $HOME/.local/bin/nvim
 rm -rf /tmp/nvim-linux64.tar.gz
 nvim --version
-# if already nvim config exists, remove it.
 [[ -d $HOME/.config/nvim ]] && rm -rf $HOME/.config/nvim
 git clone https://github.com/wasifekbal/neovim.git ~/.config/nvim
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+    [[ -f $HOME/.bashrc ]] && echo 'export PATH=$PATH:$HOME/.local/bin' >> $HOME/.bashrc
+fi
