@@ -194,4 +194,5 @@ kt (){
     echo "done.."
 }
 
-eval "$(starship init zsh)"
+[ -f `which starship` ] && eval "$(starship init zsh)"
+[ -f `which zoxide` ] && eval "$(zoxide init zsh)"

@@ -18,4 +18,5 @@ git clone https://github.com/wasifekbal/neovim.git ~/.config/nvim
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     export PATH="$HOME/.local/bin:$PATH"
     [[ -f $HOME/.bashrc ]] && echo 'export PATH=$PATH:$HOME/.local/bin' >> $HOME/.bashrc
+    echo "run 'source ~/.bashrc'"
 fi

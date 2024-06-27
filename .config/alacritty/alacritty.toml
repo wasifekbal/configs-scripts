@@ -8,29 +8,29 @@ blink_interval = 500
 blinking = "Always"
 shape = "Block"
 
-# # FiraCode
+# FiraCode
+[font]
+size = 13.5
+[font.bold]
+family = "FiraCode Nerd Font"
+[font.bold_italic]
+family = "FiraCode Nerd Font"
+[font.italic]
+family = "FiraCode Nerd Font"
+[font.normal]
+family = "FiraCode Nerd Font"
+
+# # JetBrains
 # [font]
 # size = 12.0
 # [font.bold]
-# family = "FiraCode Nerd Font"
+# family = "JetBrains Mono Nerd Font"
 # [font.bold_italic]
-# family = "FiraCode Nerd Font"
+# family = "JetBrains Mono Nerd Font"
 # [font.italic]
-# family = "FiraCode Nerd Font"
+# family = "JetBrains Mono Nerd Font"
 # [font.normal]
-# family = "FiraCode Nerd Font"
-
-# JetBrains
-[font]
-size = 12.0
-[font.bold]
-family = "JetBrains Mono Nerd Font"
-[font.bold_italic]
-family = "JetBrains Mono Nerd Font"
-[font.italic]
-family = "JetBrains Mono Nerd Font"
-[font.normal]
-family = "JetBrains Mono Nerd Font"
+# family = "JetBrains Mono Nerd Font"
 
 # # Hack
 # [font]

@@ -46,6 +46,9 @@ shift + alt + e
 alt + Return
   /usr/bin/alacritty
 
+alt + shift + Return
+  /usr/local/bin/tabbed alacritty --embed
+
 # Ranger
 alt + f
   /usr/bin/alacritty -e "/usr/bin/ranger"

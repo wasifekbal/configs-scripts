@@ -96,8 +96,9 @@ error_symbol = "[󰊕](bold red)"
 # error_symbol = "[ﬦ](bold red)"
 
 [fill]
-symbol = "-"
-# style = "bold grey"
+symbol = "---"
+style = "fg:240"
+# [ansi colors](https://i.stack.imgur.com/KTSQa.png)
 
 [python]
 symbol=" "
