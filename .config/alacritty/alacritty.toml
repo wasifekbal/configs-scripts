@@ -1,5 +1,6 @@
-import = ["/home/alpha/.config/alacritty/themes/catppuccin/catppuccin-macchiato.toml"]
-live_config_reload = true
+general.import = ["/home/alpha/.config/alacritty/themes/catppuccin/catppuccin-macchiato.toml"]
+general.live_config_reload = true
+
 
 [cursor]
 blink_interval = 500

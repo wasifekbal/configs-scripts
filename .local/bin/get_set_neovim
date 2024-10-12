@@ -1,6 +1,6 @@
 #!/bin/bash
 
-latest_version=$(curl --silent https://github.com/neovim/neovim/releases | grep -iE "Nvim [0-9].*?<\/h2>" | grep -o "[0-9]\.[0-9]\.[0-9]" | head -n 1)
+latest_version=$(curl --silent https://github.com/neovim/neovim/releases | grep -iE "Nvim [0-9].*?<\/h2>" | grep -Eo "[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}" | head -n 1)
 url="https://github.com/neovim/neovim/releases/download/v$latest_version/nvim-linux64.tar.gz"
 wget -q -P /tmp $url
 if [[ ! -f /tmp/nvim-linux64.tar.gz ]]; then
@@ -20,3 +20,56 @@ if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     [[ -f $HOME/.bashrc ]] && echo 'export PATH=$PATH:$HOME/.local/bin' >> $HOME/.bashrc
     echo "run 'source ~/.bashrc'"
 fi
+
+# check and install node and npm
+if [[ $(which node) && $(which npm) ]]; then
+    echo "[+] Both Node and NPM are already installed."
+else
+    echo "[!] Either Node or NPM is not installed."
+    read -p "[=] Do you want to install it via NVM? [Y/n] > " is_install_nvm;
+    if [[ -z $is_install_nvm || "$is_install_nvm" == "Y" || "$is_install_nvm" == "y" ]]; then
+        echo "[+] installing NVM...";
+        nvm_latest_version=$(curl --silent https://github.com/nvm-sh/nvm/releases | grep -iE "v[0-9].*?<\/h2>" | grep -Eo "[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,}" | head -n 1)
+        curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v$nvm_latest_version/install.sh" | bash
+        sleep 1;
+        current_shell=$(basename "$SHELL")
+        echo "[+] current shell is $current_shell"
+        case "$current_shell" in
+            bash)
+                rc_file="$HOME/.bashrc"
+                ;;
+            zsh)
+                rc_file="$HOME/.zshrc"
+                ;;
+            *)
+                echo "Source your shell rc file. or make npm availble on PATH";
+                exit;
+                ;;
+        esac
+        echo "[+] Sourcing $rc_file"
+        source $rc_file;
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+        sleep 1;
+        nvm install --lts
+        sleep 1;
+        nvm use --lts
+        sleep 1;
+    else
+        exit;
+    fi
+fi
+
+# check and install yarn
+if ! command -v yarn &> /dev/null; then
+    if [[ $(which npm | grep "nvm") ]]; then
+        npm -g i yarn
+    else
+        sudo npm -g i yarn
+    fi
+else
+    echo "[+] Yarn is already installed."
+fi
+
+
