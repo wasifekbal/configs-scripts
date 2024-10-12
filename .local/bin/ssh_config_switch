@@ -1,0 +1,30 @@
+#!/bin/bash
+
+HOME_SSH="$HOME/.personal_ssh"
+OFFICE_SSH="$HOME/.office_ssh"
+SSH_DIR="$HOME/.ssh"
+
+if [[ ! -L "$SSH_DIR" ]]; then
+    echo "$SSH_DIR is an actual directory not a link. Can't delete."
+    exit
+fi
+
+if [[ "$1" == "home" ]]; then
+    if [[ ! -d $HOME_SSH ]]; then
+        echo "[X] $1 ssh folder '$HOME_SSH' does not exists."
+        exit
+    fi
+    /usr/bin/rm -rf $SSH_DIR
+    /usr/bin/ln -s $HOME_SSH $SSH_DIR
+    echo "[=] Linked home ssh config"
+fi
+
+if [[ "$1" == "office" ]]; then
+    if [[ ! -d $OFFICE_SSH ]]; then
+        echo "[X] $1 ssh folder '$OFFICE_SSH' does not exists."
+        exit
+    fi
+    /usr/bin/rm -rf $SSH_DIR
+    /usr/bin/ln -s $OFFICE_SSH $SSH_DIR
+    echo "[=] Linked office ssh config"
+fi
