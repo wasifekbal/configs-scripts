@@ -132,7 +132,7 @@ ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
 
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 [ -d ~/.dircolors ] && eval `dircolors ~/.dircolors/dircolors`
-[ -f ~/.local/pastenet.sh ] && source ~/.local/pastenet.sh
+[ -f ~/.local/pastenet ] && source ~/.local/pastenet
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## replace caps key with escape

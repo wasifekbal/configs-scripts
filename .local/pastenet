@@ -1,7 +1,8 @@
 pastebin()
 {
     local url='https://paste.c-net.org/'
-    local logfile='/var/log/paste_c-net.log'
+    [[ ! -d $HOME/.local/log ]] && mkdir -p "$HOME/.local/log"
+    local logfile="$HOME/.local/log/paste_c-net.log"
     if (( $# )); then
         local file
         for file; do
@@ -39,7 +40,7 @@ pasteget()
 
 pastedelete () {
     if [ $# -eq 2 ]; then
-        local logfile='/var/log/paste_c-net.log'
+        local logfile="$HOME/.local/log/paste_c-net.log"
         date >> $logfile
         echo $1 $2 >> $logfile
         curl -s -X DELETE -H "X-Delete-Key: $2" "https://paste.c-net.org/$1" | tee -a $logfile

@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+
+import requests
+from bs4 import BeautifulSoup as bs
+from requests.exceptions import HTTPError
+import zipfile
+import os
+
+URL = "https://www.vpnbook.com"
+VPNBOOK_DIR = f"{os.environ.get('HOME')}/Documents/ovpn/vpnbook"
+
+def download_file(url, dest):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for bad responses
+        with open(dest, 'wb') as file:
+            file.write(response.content)
+        print(f"[+] Downloaded: {dest}")
+        return True
+    except (HTTPError, Exception) as e:
+        print("[X] Failed to download..")
+        print(e)
+        return False
+
+def extract_zip(zip_path, extract_to):
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+    print(f"[+] Extracted: {zip_path} to {extract_to}")
+    print(f"[+] Deleting zip: {zip_path}")
+    os.remove(zip_path)
+
+def parse_links():
+    res = requests.get(URL)
+    soup = bs(res.text, "lxml")
+    # soup = bs(html, "html.parser")
+    ovpn_li = soup.find("li", attrs={"id": "openvpn"})
+    if not ovpn_li:
+        print("[X] No links found!")
+        return
+    all_ovpn_links = ovpn_li.find_all("a")
+    links = [each_link["href"] for each_link in all_ovpn_links][1:]
+    for idx, link in enumerate(links, start=1):
+        print(f"[{idx}] {link.split('-')[-1]}")
+    choice = input("[+] Select > ")
+    if choice and (0 < int(choice) <= len(links)):
+        chosen_link = f"{URL}{links[int(choice)-1]}"
+        return chosen_link
+
+def main():
+    if not os.path.isdir(VPNBOOK_DIR):
+        os.mkdir(path=VPNBOOK_DIR, mode=774)
+    link = parse_links()
+    if not link:
+        return
+    print(f"[+] Downloading.. {link}")
+    save_file_path = f'{VPNBOOK_DIR}/{link.split("-")[-1]}'
+    extract_zip_dir = save_file_path.split("/")[-1].split(".")[0]
+    if not download_file(link, save_file_path):
+        return
+    extract_zip(save_file_path, extract_zip_dir)
+
+if __name__ == "__main__":
+    main()

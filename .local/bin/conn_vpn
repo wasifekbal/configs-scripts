@@ -1,0 +1,13 @@
+#!/bin/bash
+
+VPNBOOK_DIR="$HOME/Documents/ovpn"
+echo $VPNBOOK_DIR;
+
+if [[ ! -d $VPNBOOK_DIR ]]; then
+    mkdir $VPNBOOK_DIR;
+fi
+
+ovpn=$(find $VPNBOOK_DIR -type f -name "*.ovpn" | fzf --height 40% --reverse);
+if [[ $ovpn ]]; then
+    sudo openvpn $ovpn;
+fi

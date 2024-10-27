@@ -26,6 +26,9 @@ rsync -av ~/.local/bin/tmux-session-maker ./.local/bin/
 rsync -av ~/.local/bin/lofi ./.local/bin/
 rsync -av ~/.local/bin/tsq ./.local/bin/tsq
 rsync -av ~/.local/bin/media-controler ./.local/bin/media-controler
+rsync -av ~/.local/bin/get_vpnbook ./.local/bin/get_vpnbook
+rsync -av ~/.local/bin/conn_vpn ./.local/bin/conn_vpn
+rsync -av ~/.local/pastenet ./.local/pastenet
 
 
 rsync -av ~/.local/share/icons/custom_icons/ ./.local/share/icons/custom_icons/
