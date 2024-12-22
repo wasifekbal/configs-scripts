@@ -1,0 +1,27 @@
+#!/bin/bash
+
+DEFAULT_PORT=9090
+
+if [[ $# -gt 0 ]]; then
+	if [[ $1 -eq '-h' ]]; then
+                        echo " ############ Usage ###############";
+                        echo "--------------------";
+                        echo " up             ---> Port $DEFAULT_PORT on current dir.";
+                        echo " up 4444        ---> Port 4444 on current dir.";
+                        echo " up 9001 ~/tools  ---> Port 9001 on ~/tools dir.";
+			echo " up -h          ---> Display this help menu.";
+                        exit 0;
+	fi
+	
+	if [[ $# -eq 1 ]]; then
+		echo "Starting python server on port $1";
+		python3 -m http.server $1 --directory=`pwd`;
+	fi
+
+	if [[ $# -eq 2 ]]; then
+		echo "Starting python server on port $1 for directory $2";
+		python3 -m http.server $1 --directory=$2;
+	fi
+else
+	python3 -m http.server $DEFAULT_PORT --directory=`pwd`;
+fi
